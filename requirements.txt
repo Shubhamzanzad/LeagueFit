@@ -1,0 +1,7 @@
+numpy
+pandas
+sk-learn
+logging 
+typing
+fastapi
+uvicorn
