@@ -1,6 +1,6 @@
 numpy
 pandas
-sk-learn
+scikit-learn
 logging 
 typing
 fastapi

@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from train import train
 from recommend import recommend
 import pandas as pd
-from typing import List
+from typing import List,Union
 import uvicorn
 import logging
 
@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 
 class NumberList(BaseModel):
-    numbers: List[int]
+    numbers: List[Union[float,int]]
 
 app = FastAPI()
 
