@@ -1,0 +1,32 @@
+---
+- name: Pull Docker Images and Run Docker Compose
+  hosts: localhost
+  remote_user: zanzad_shubham
+  become: false
+  tasks:
+    - name: Pull Docker Images
+      docker_image:
+        name: Pull Docker Images
+        source: pull
+      loop:
+        - zanzadshubham/dataset
+        - zanzadshubham/backend
+        - zanzadshubham/frontend
+      register: docker_pull_result
+
+    - name: Display Docker Pull Result
+      debug:
+        var: docker_pull_result
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+
+    - name: Run Docker Compose
+      command: docker-compose up
+      args:
+        chdir: /path/to/docker-compose-directory
+
+    - name: Run Test Script in Python
+      command: python test.py
