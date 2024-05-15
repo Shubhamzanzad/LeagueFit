@@ -18,41 +18,32 @@ pipeline {
         }
         
             
-    stage('Build Docker Images') {
+        stage('Build Docker Compose') {
             steps {
-                dir('/dataset') {
-                     script {
-                        docker.build("${DATASET_IMAGE_NAME}")
-                    }       
-                }
-                dir('/backend') {
-                     script {
-                        docker.build("${BACKEND_IMAGE_NAME}")
-                    }       
-                }
-                dir('/frontend') {
-                     script {
-                        docker.build("${FRONTEND_IMAGE_NAME}")
-                    }       
+                script {
+                    sh 'docker-compose up'
                 }
             }
         }
         
         stage('Push Docker Images') {
             steps {
-                script {
-                    docker.image("${DATASET_IMAGE_NAME}").push()
-                }
-                script {
-                    docker.image("${BACKEND_IMAGE_NAME}").push()
-                }
-                script {
-                    docker.image("${FRONTEND_IMAGE_NAME}").push()
-                }
+                script{
+                    docker.withRegistry('', 'DockerHubCred') {
+                        sh 'docker tag dataset zanzadshubham/dataset:latest'
+                        sh 'docker push zanzadshubham/dataset'
+
+                        sh 'docker tag backend zanzadshubham/backend:latest'
+                        sh 'docker push zanzadshubham/backend'
+
+                        sh 'docker tag frontend zanzadshubham/frontend:latest'
+                        sh 'docker push zanzadshubham/frontend'
+                    }
+                 }
             }
         }
         
-        stage('Deploy with Docker Compose') {
+        stage('Run Ansible Playbook') {
             steps {
                 script {
                     ansiblePlaybook(
@@ -62,5 +53,12 @@ pipeline {
                 }
             }
         }
+        // stage('Run Tests') {
+        //     steps {
+        //         script{
+        //             sh 'python3 test.py'
+        //         }
+        //     }    
+        // }
     }
 }
