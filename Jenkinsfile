@@ -6,6 +6,7 @@ pipeline {
         FRONTEND_IMAGE_NAME = 'frontend'
         GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
         PATH = ""
+        DOCKERHUB_CRED = credentials('LeagueFit-DockerHub')
     }
     
     stages {
@@ -17,7 +18,7 @@ pipeline {
             }
         }
         
-        stage("Prune Docker Container") {
+        stage("Prunning") {
             steps {
                 script {
                     sh 'docker system prune -a --volumes -f'
@@ -39,15 +40,12 @@ pipeline {
             }
         }
 
-            // Change this after building docker image use dockercompose
-        // stage('Build Docker Compose') {
-        //     steps {
-        //         script {
-        //             sh 'docker-compose up -d'
-        //         }
-        //     }
-        // }
-        
+        stage('Dockerhub Login') {
+        steps {
+            sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
+        }
+}
+
         stage('Push Docker Images') {
             steps {
                 script{
@@ -87,6 +85,7 @@ pipeline {
         always {
             sh 'docker-compose down --remove-orphans -v'
             sh 'docker-compose ps'
+            sh 'docker logout'
         }
     }
 }
