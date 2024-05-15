@@ -6,7 +6,7 @@ pipeline {
         FRONTEND_IMAGE_NAME = 'frontend'
         GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
         PATH = ""
-        DOCKERHUB_CRED = credentials('LeagueFit-DockerHub')
+        DOCKERHUB_CREDENTIALS = credentials('LeagueFit-DockerHub')
     }
     
     stages {
@@ -41,10 +41,10 @@ pipeline {
         }
 
         stage('Dockerhub Login') {
-        steps {
-            sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
         }
-}
 
         stage('Push Docker Images') {
             steps {
