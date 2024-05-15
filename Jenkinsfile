@@ -28,23 +28,17 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 dir('/dataset') {
-                     script {
-                        sh 'echo "Hello"'
-                        docker.build("${DATASET_IMAGE_NAME}", '.')
-                    }       
+                    sh "docker build -t ${DATASET_IMAGE_NAME} ."
                 }
                 dir('/backend') {
-                     script {
-                        docker.build("${BACKEND_IMAGE_NAME}", '.')
-                    }       
+                    sh "docker build -t ${BACKEND_IMAGE_NAME} ."
                 }
                 dir('/frontend') {
-                     script {
-                        docker.build("${FRONTEND_IMAGE_NAME}", '.')
-                    }       
+                    sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
                 }
             }
         }
+
             
         stage('Build Docker Compose') {
             steps {
