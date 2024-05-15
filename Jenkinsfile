@@ -22,8 +22,8 @@ pipeline {
             steps {
                 script {
 
-                    sh 'docker rm backend'
-                    sh 'echo "1"'
+                    // sh 'docker rm backend'
+                    // sh 'echo "1"'
                     // sh 'docker rm frontend'
                     // sh 'echo "2"'
                     sh 'docker rm dataset'
