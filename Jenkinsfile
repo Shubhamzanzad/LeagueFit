@@ -24,6 +24,26 @@ pipeline {
                 }
             }
         }
+
+        stage('Build Docker Images') {
+            steps {
+                dir('/dataset') {
+                     script {
+                        docker.build("${DATASET_IMAGE_NAME}")
+                    }       
+                }
+                dir('/backend') {
+                     script {
+                        docker.build("${BACKEND_IMAGE_NAME}")
+                    }       
+                }
+                dir('/frontend') {
+                     script {
+                        docker.build("${FRONTEND_IMAGE_NAME}")
+                    }       
+                }
+            }
+        }
             
         stage('Build Docker Compose') {
             steps {
