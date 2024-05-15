@@ -17,11 +17,17 @@ pipeline {
             }
         }
         
+        stage("Prune Docker Container") {
+            steps {
+                script {
+                    sh 'docker system prune -a --volumes -f'
+                }
+            }
+        }
             
         stage('Build Docker Compose') {
             steps {
                 script {
-                    sh 'docker-compose down -v --remove-orphans'
                     sh 'docker-compose up'
                 }
             }
@@ -61,5 +67,11 @@ pipeline {
         //         }
         //     }    
         // }
+    }
+    post {
+        always {
+            sh 'docker-compose down --remove-orphans -v'
+            sh 'docker-compose ps'
+        }
     }
 }
