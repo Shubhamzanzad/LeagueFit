@@ -21,7 +21,6 @@ pipeline {
             steps {
                 script {
                     sh 'docker system prune -a --volumes -f'
-                    sh 'ls'
                 }
             }
         }
@@ -40,14 +39,14 @@ pipeline {
             }
         }
 
-            
-        stage('Build Docker Compose') {
-            steps {
-                script {
-                    sh 'docker-compose up -d'
-                }
-            }
-        }
+            // Change this after building docker image use dockercompose
+        // stage('Build Docker Compose') {
+        //     steps {
+        //         script {
+        //             sh 'docker-compose up -d'
+        //         }
+        //     }
+        // }
         
         stage('Push Docker Images') {
             steps {
