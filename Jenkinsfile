@@ -29,6 +29,7 @@ pipeline {
             steps {
                 dir('/dataset') {
                      script {
+                        sh 'echo "Hello"'
                         docker.build("${DATASET_IMAGE_NAME}", '.')
                     }       
                 }
