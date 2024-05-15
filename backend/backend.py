@@ -22,7 +22,7 @@ def _recommend(data:NumberList):
     logging.info("posting attributes")
     if not data.numbers:
         raise HTTPException(status_code=400, detail="The list of numbers is empty.")
-    response = requests.get("http://dataset:80/final_data.csv")
+    response = requests.get("http://dataset:8081/final_data.csv")
     df = pd.read_csv(io.StringIO(response.text))
     
     # Convert NumberList object to dictionary before sending in the request

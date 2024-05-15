@@ -1,7 +1,6 @@
 numpy
 pandas
 scikit-learn
-# app_logging 
 typing
 fastapi
 uvicorn

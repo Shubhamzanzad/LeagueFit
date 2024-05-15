@@ -4,8 +4,7 @@ import pandas as pd
 import io
 
 def main():
-    # df = pd.read_csv("/app/final_data.csv")
-    response = requests.get("http://dataset:80/final_data.csv")
+    response = requests.get("http://dataset:8081/final_data.csv")
     if response.status_code == 200:
         df = pd.read_csv(io.StringIO(response.text))
         st.title("LeagueFit")
