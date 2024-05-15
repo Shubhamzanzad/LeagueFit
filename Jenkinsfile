@@ -26,6 +26,7 @@ pipeline {
                     // sh 'echo "1"'
                     // sh 'docker rm frontend'
                     // sh 'echo "2"'
+                    sh 'docker stop dataset'
                     sh 'docker rm dataset'
                     sh 'echo "3"'
                     sh 'docker-compose up'
