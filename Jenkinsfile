@@ -29,17 +29,17 @@ pipeline {
             steps {
                 dir('/dataset') {
                      script {
-                        docker.build("${DATASET_IMAGE_NAME}")
+                        docker.build("${DATASET_IMAGE_NAME}", '.')
                     }       
                 }
                 dir('/backend') {
                      script {
-                        docker.build("${BACKEND_IMAGE_NAME}")
+                        docker.build("${BACKEND_IMAGE_NAME}", '.')
                     }       
                 }
                 dir('/frontend') {
                      script {
-                        docker.build("${FRONTEND_IMAGE_NAME}")
+                        docker.build("${FRONTEND_IMAGE_NAME}", '.')
                     }       
                 }
             }
