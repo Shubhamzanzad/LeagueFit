@@ -21,8 +21,15 @@ pipeline {
         stage('Build Docker Compose') {
             steps {
                 script {
-                    sh 'docker-compose down'
+
+                    sh 'docker rm backend'
+                    sh 'echo "1"'
+                    sh 'docker rm frontend'
+                    sh 'echo "2"'
+                    sh 'docker rm dataset'
+                    sh 'echo "3"'
                     sh 'docker-compose up'
+                    sh 'echo 4"'
                 }
             }
         }
