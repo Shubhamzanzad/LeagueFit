@@ -28,13 +28,13 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                dir('/dataset') {
+                dir('./dataset') {
                     sh "docker build -t ${DATASET_IMAGE_NAME} ."
                 }
-                dir('/backend') {
+                dir('./backend') {
                     sh "docker build -t ${BACKEND_IMAGE_NAME} ."
                 }
-                dir('/frontend') {
+                dir('./frontend') {
                     sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
                 }
             }
