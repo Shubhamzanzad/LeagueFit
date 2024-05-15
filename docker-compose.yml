@@ -28,6 +28,8 @@ services:
       - dataset:/dataset
     networks:
       - app-network
+    depends_on:
+      - dataset
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://dataset:8081/ || exit 1"]
       interval: 30s
