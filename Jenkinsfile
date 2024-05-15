@@ -21,6 +21,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker system prune -a --volumes -f'
+                    sh 'ls'
                 }
             }
         }
