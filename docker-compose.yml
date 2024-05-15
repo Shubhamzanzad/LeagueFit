@@ -12,7 +12,7 @@ services:
     networks:
       - app-network
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://dataset:8081/ || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:8081/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -31,7 +31,7 @@ services:
     depends_on:
       - dataset
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://dataset:8081/ || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -50,7 +50,7 @@ services:
     depends_on:
       - backend
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://backend:8000/ || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:8501/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
