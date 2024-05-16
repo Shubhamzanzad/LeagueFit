@@ -18,6 +18,13 @@ pipeline {
             }
         }
         
+        stage("Prunning") {
+            steps {
+                script {
+                    sh 'docker system prune -a --volumes -f'
+                }
+            }
+        }
         
 
         stage('Build Docker Images') {
