@@ -1,13 +1,13 @@
 ---
 - name: Pull Docker Images and Run Docker Compose
   hosts: localhost
-  become: false  # Avoid `become` as unnecessary and potentially insecure
-
+  remote_user: shubham
+  become: false
   tasks:
     - name: Pull Docker Images
       docker_image:
         name: "{{ item }}"
-        state: present  # Use 'present' for consistency (pulls if missing)
+        source: pull
       loop:
         - zanzadshubham25/dataset
         - zanzadshubham25/backend
@@ -18,13 +18,9 @@
       debug:
         var: docker_pull_result
 
-    - name: Verify Docker service is running 
+    - name: Start Docker service
       service:
         name: docker
         state: started
-      register: docker_service_result
-
-    - name: Start Docker Compose services
-      name: Run docker-compose up -d
-      become: true  
+    - name: Running container
       shell: docker-compose up -d
