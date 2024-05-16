@@ -1,21 +1,13 @@
 ---
-# Inventory file
-
-[localhost]
-ansible_user=shubham
-ansible_connection=local
-
-# Ansible Playbook
-
 - name: Pull Docker Images and Run Docker Compose
   hosts: localhost
-  become: false  # Avoid `become` as unnecessary and potentially insecure
+  become: false 
 
   tasks:
     - name: Pull Docker Images
       docker_image:
         name: "{{ item }}"
-        state: present  # Use 'present' for consistency (pulls if missing)
+        state: present 
       loop:
         - zanzadshubham25/dataset
         - zanzadshubham25/backend
@@ -34,5 +26,5 @@ ansible_connection=local
 
     - name: Start Docker Compose services
       name: Run docker-compose up -d
-      become: true  # Use `become` here with caution (consider alternatives)
+      become: true 
       shell: docker-compose up -d
