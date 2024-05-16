@@ -1,3 +1,4 @@
+---
 - name: Pull Docker Images and Run Docker Compose
   hosts: localhost
   become: false  # Avoid `become` as unnecessary and potentially insecure
