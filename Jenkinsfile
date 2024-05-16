@@ -6,7 +6,7 @@ pipeline {
         FRONTEND_IMAGE_NAME = 'frontend'
         GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
         PATH = ""
-        DOCKERHUB_CREDENTIALS = credentials('LeagueFit-DockerHub')
+        // DOCKERHUB_CREDENTIALS = credentials('LeagueFit-DockerHub')
     }
     
     stages {
@@ -40,23 +40,25 @@ pipeline {
             }
         }
 
-        stage('Dockerhub Login') {
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
-        }
+        // stage('Dockerhub Login') {
+        //     steps {
+        //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        //     }
+        // }
 
         stage('Push Docker Images') {
             steps {
                 script{
-                    sh 'docker tag dataset zanzadshubham25/dataset:latest'
-                    sh 'docker push zanzadshubham25/dataset'
+                    docker.withRegistry('', 'LeagueFit-DockerHub') {
+                        sh 'docker tag dataset zanzadshubham25/dataset:latest'
+                        sh 'docker push zanzadshubham25/dataset'
 
-                    sh 'docker tag backend zanzadshubham25/backend:latest'
-                    sh 'docker push zanzadshubham25/backend'
+                        sh 'docker tag backend zanzadshubham25/backend:latest'
+                        sh 'docker push zanzadshubham25/backend'
 
-                    sh 'docker tag frontend zanzadshubham25/frontend:latest'
-                    sh 'docker push zanzadshubham25/frontend'
+                        sh 'docker tag frontend zanzadshubham25/frontend:latest'
+                        sh 'docker push zanzadshubham25/frontend'
+                    }
                 }
             }
         }
@@ -83,7 +85,7 @@ pipeline {
         always {
             sh 'docker-compose down --remove-orphans -v'
             sh 'docker-compose ps'
-            sh 'docker logout'
+            // sh 'docker logout'
         }
     }
 }
