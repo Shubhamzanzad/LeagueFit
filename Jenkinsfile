@@ -27,19 +27,19 @@ pipeline {
         }
         
 
-        stage('Build Docker Images') {
-            steps {
-                dir('./dataset') {
-                    sh "docker build -t ${DATASET_IMAGE_NAME} ."
-                }
-                dir('./backend') {
-                    sh "docker build -t ${BACKEND_IMAGE_NAME} ."
-                }
-                dir('./frontend') {
-                    sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
-                }
-            }
-        }
+        // stage('Build Docker Images') {
+        //     steps {
+        //         dir('./dataset') {
+        //             sh "docker build -t ${DATASET_IMAGE_NAME} ."
+        //         }
+        //         dir('./backend') {
+        //             sh "docker build -t ${BACKEND_IMAGE_NAME} ."
+        //         }
+        //         dir('./frontend') {
+        //             sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
+        //         }
+        //     }
+        // }
 
         // stage('Dockerhub Login') {
         //     steps {
