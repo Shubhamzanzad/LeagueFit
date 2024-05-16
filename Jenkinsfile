@@ -50,14 +50,14 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'LeagueFit-DockerHub') {
-                        sh 'docker tag dataset zanzadshubham25/dataset:latest'
-                        sh 'docker push zanzadshubham25/dataset'
-
-                        sh 'docker tag backend zanzadshubham25/backend:latest'
-                        sh 'docker push zanzadshubham25/backend'
-
-                        sh 'docker tag frontend zanzadshubham25/frontend:latest'
-                        sh 'docker push zanzadshubham25/frontend'
+                    sh ''' 
+                        docker tag dataset zanzadshubham25/dataset:latest
+                        docker push zanzadshubham25/dataset
+                        docker tag backend zanzadshubham25/backend:latest
+                        docker push zanzadshubham25/backend
+                        docker tag frontend zanzadshubham25/frontend:latest
+                        docker push zanzadshubham25/frontend
+                    '''
                     }
                 }
             }
