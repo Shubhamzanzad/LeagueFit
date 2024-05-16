@@ -48,24 +48,24 @@ pipeline {
         //     }
         // }
 
-        stage('Push Docker Images') {
-            steps {
-                script{
-                    docker.withRegistry('', 'LeagueFit-DockerHub') {
-                    sh ''' 
-                        docker tag dataset zanzadshubham25/dataset:latest
-                        docker push zanzadshubham25/dataset
-                        docker tag backend zanzadshubham25/backend:latest
-                        docker push zanzadshubham25/backend
-                        docker tag frontend zanzadshubham25/frontend:latest
-                        docker push zanzadshubham25/frontend
-                        docker ps
-                        docker images
-                    '''
-                    }
-                }
-            }
-        }
+        // stage('Push Docker Images') {
+        //     steps {
+        //         script{
+        //             docker.withRegistry('', 'LeagueFit-DockerHub') {
+        //             sh ''' 
+        //                 docker tag dataset zanzadshubham25/dataset:latest
+        //                 docker push zanzadshubham25/dataset
+        //                 docker tag backend zanzadshubham25/backend:latest
+        //                 docker push zanzadshubham25/backend
+        //                 docker tag frontend zanzadshubham25/frontend:latest
+        //                 docker push zanzadshubham25/frontend
+        //                 docker ps
+        //                 docker images
+        //             '''
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage("Deleted Docker Imgaes") {
         //     steps {
