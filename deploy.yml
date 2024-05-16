@@ -6,6 +6,7 @@
     - name: Pull Docker Images
       docker_image:
         name: "{{ item }}"
+        source: pull
         state: present
       loop:
         - zanzadshubham25/dataset
