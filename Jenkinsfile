@@ -22,7 +22,7 @@ pipeline {
         stage('Unit Testing'){
             steps{
                 dir('./backend'){
-                    sh 'ls'
+                    sh 'pip install pandas'
                     sh 'python3 -m unittest test.py'
                 }
             }
