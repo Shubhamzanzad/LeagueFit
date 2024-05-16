@@ -23,11 +23,6 @@
         state: started
       register: docker_service_result
 
-    - name: Stop Docker Compose services
-        name: docker-compose down
-        become: true
-        shell: docker-compose down
-
     - name: Start Docker Compose services
       name: Run docker-compose up -d
       become: true  
