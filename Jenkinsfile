@@ -6,6 +6,7 @@ pipeline {
         FRONTEND_IMAGE_NAME = 'frontend'
         GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
         PATH = ""
+        // DOCKERHUB_CREDENTIALS = credentials('LeagueFit-DockerHub')
     }
     
     stages {
@@ -25,6 +26,28 @@ pipeline {
             }
         }
         
+
+        stage('Build Docker Images') {
+            steps {
+                dir('./dataset') {
+                    sh "docker build -t ${DATASET_IMAGE_NAME} ."
+                }
+                dir('./backend') {
+                    sh "docker build -t ${BACKEND_IMAGE_NAME} ."
+                }
+                dir('./frontend') {
+                    sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
+                }
+            }
+        }
+        
+
+        // stage('Dockerhub Login') {
+        //     steps {
+        //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        //     }
+        // }
+
         stage('Push Docker Images') {
             steps {
                 script{
@@ -44,6 +67,21 @@ pipeline {
             }
         }
 
+        // stage("Deleted Docker Imgaes") {
+        //     steps {
+        //         script {
+        //             sh '''
+        //                 docker rmi -f backend
+        //                 docker rmi -f frontend
+        //                 docker rmi -f dataset
+        //                 docker rmi -f zanzadshubham25/dataset
+        //                 docker rmi -f zanzadshubham25/frontend
+        //                 docker rmi -f zanzadshubham25/backend
+        //             '''
+        //         }
+        //     }
+        // }
+        
         stage('Run Ansible Playbook') {
             steps {
                 ansiblePlaybook becomeUser: null,
@@ -56,7 +94,13 @@ pipeline {
                 sudoUser: null
             }
         }
-        
+        // stage('Run Tests') {
+        //     steps {
+        //         script{
+        //             sh 'python3 test.py'
+        //         }
+        //     }    
+        // }
     }
     post {
         always {
