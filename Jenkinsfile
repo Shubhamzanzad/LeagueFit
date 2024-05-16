@@ -18,13 +18,7 @@ pipeline {
             }
         }
         
-        stage("Prunning") {
-            steps {
-                script {
-                    sh 'docker system prune -a --volumes -f'
-                }
-            }
-        }
+        
 
         stage('Build Docker Images') {
             steps {
@@ -59,6 +53,14 @@ pipeline {
                         docker push zanzadshubham25/frontend
                     '''
                     }
+                }
+            }
+        }
+
+        stage("Prunning") {
+            steps {
+                script {
+                    sh 'docker system prune -a --volumes -f'
                 }
             }
         }
