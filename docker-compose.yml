@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  dataset:
+    build: 
+      context: ./dataset
+    container_name: dataset
+    volumes:
+      - dataset:/app
+    ports:
+      - "8081:8081"
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:  
+      - ./backend:/app
+      # - dataset:/dataset
+    networks:
+      - app-network
+    depends_on:
+      - dataset
+
+  frontend:
+    build: 
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./frontend:/app
+      # - dataset:/dataset
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dataset:
