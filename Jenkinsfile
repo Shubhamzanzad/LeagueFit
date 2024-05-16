@@ -5,6 +5,7 @@ pipeline {
         BACKEND_IMAGE_NAME = 'backend'
         FRONTEND_IMAGE_NAME = 'frontend'
         GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
+        ANSIBLE_SUDO_PASS = credentials('ansible-sudo-password') 
         PATH = ""
         // DOCKERHUB_CREDENTIALS = credentials('LeagueFit-DockerHub')
     }
@@ -82,16 +83,25 @@ pipeline {
         //     }
         // }
         
+        // stage('Run Ansible Playbook') {
+        //     steps {
+        //         ansiblePlaybook becomeUser: null,
+        //         colorized: true,
+        //         credentialsId: 'localhost',
+        //         disableHostKeyChecking: true,
+        //         installation: 'Ansible',
+        //         inventory: 'inventory',
+        //         playbook: 'deploy.yml',
+        //         sudoUser: null
+        //     }
+        // }
         stage('Run Ansible Playbook') {
             steps {
-                ansiblePlaybook becomeUser: null,
-                colorized: true,
-                credentialsId: 'localhost',
-                disableHostKeyChecking: true,
-                installation: 'Ansible',
-                inventory: 'inventory',
-                playbook: 'deploy.yml',
-                sudoUser: null
+                script {
+                    sh '''
+                    ansible-playbook deploy.yml -i inventory --become --become-user=root --extra-vars "ansible_become_pass=${ANSIBLE_SUDO_PASS}"
+                    '''
+                }
             }
         }
         // stage('Run Tests') {
