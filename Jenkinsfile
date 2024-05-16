@@ -22,7 +22,7 @@ pipeline {
         stage('Unit Testing'){
             steps{
                 dir('./backend'){
-                    sh 'pwd'
+                    sh 'ls'
                     sh 'python3 -m unittest test.py'
                 }
             }
