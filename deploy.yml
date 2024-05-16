@@ -17,14 +17,18 @@
       debug:
         var: docker_pull_result
 
-    - name: Verify Docker service is running (Optional)
+    - name: Verify Docker service is running 
       service:
         name: docker
         state: started
       register: docker_service_result
 
+    - name: Stop Docker Compose services
+        name: docker-compose down
+        become: true
+        shell: docker-compose down
+
     - name: Start Docker Compose services
       name: Run docker-compose up -d
-      become: true  # Use `become` here with caution (consider alternatives)
+      become: true  
       shell: docker-compose up -d
-      when: docker_service_result.state != "started"  # 
