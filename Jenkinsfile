@@ -49,17 +49,15 @@ pipeline {
         stage('Push Docker Images') {
             steps {
                 script{
-                    docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker tag dataset zanzadshubham25/dataset:latest'
-                        sh 'docker push zanzadshubham25/dataset'
+                    sh 'docker tag dataset zanzadshubham25/dataset:latest'
+                    sh 'docker push zanzadshubham25/dataset'
 
-                        sh 'docker tag backend zanzadshubham25/backend:latest'
-                        sh 'docker push zanzadshubham25/backend'
+                    sh 'docker tag backend zanzadshubham25/backend:latest'
+                    sh 'docker push zanzadshubham25/backend'
 
-                        sh 'docker tag frontend zanzadshubham25/frontend:latest'
-                        sh 'docker push zanzadshubham25/frontend'
-                    }
-                 }
+                    sh 'docker tag frontend zanzadshubham25/frontend:latest'
+                    sh 'docker push zanzadshubham25/frontend'
+                }
             }
         }
         
