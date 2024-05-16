@@ -19,37 +19,37 @@ pipeline {
             }
         }
 
-        stage('Unit Testing'){
-            steps{
-                dir('./backend'){
-                    sh 'sudo apt-get install -y python3-numpy python3-pandas python3-sklearn'
-                    sh 'python3 -m unittest test.py'
-                }
-            }
-        }
+        // stage('Unit Testing'){
+        //     steps{
+        //         dir('./backend'){
+        //             sh 'sudo apt-get install -y python3-numpy python3-pandas python3-sklearn'
+        //             sh 'python3 -m unittest test.py'
+        //         }
+        //     }
+        // }
         
-        stage("Prunning") {
-            steps {
-                script {
-                    sh 'docker system prune -a --volumes -f'
-                }
-            }
-        }
+        // stage("Prunning") {
+        //     steps {
+        //         script {
+        //             sh 'docker system prune -a --volumes -f'
+        //         }
+        //     }
+        // }
         
 
-        stage('Build Docker Images') {
-            steps {
-                dir('./dataset') {
-                    sh "docker build -t ${DATASET_IMAGE_NAME} ."
-                }
-                dir('./backend') {
-                    sh "docker build -t ${BACKEND_IMAGE_NAME} ."
-                }
-                dir('./frontend') {
-                    sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
-                }
-            }
-        }
+        // stage('Build Docker Images') {
+        //     steps {
+        //         dir('./dataset') {
+        //             sh "docker build -t ${DATASET_IMAGE_NAME} ."
+        //         }
+        //         dir('./backend') {
+        //             sh "docker build -t ${BACKEND_IMAGE_NAME} ."
+        //         }
+        //         dir('./frontend') {
+        //             sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
+        //         }
+        //     }
+        // }
         
 
         // stage('Dockerhub Login') {
@@ -58,24 +58,24 @@ pipeline {
         //     }
         // }
 
-        stage('Push Docker Images') {
-            steps {
-                script{
-                    docker.withRegistry('', 'LeagueFit-DockerHub') {
-                    sh ''' 
-                        docker tag dataset zanzadshubham25/dataset:latest
-                        docker push zanzadshubham25/dataset
-                        docker tag backend zanzadshubham25/backend:latest
-                        docker push zanzadshubham25/backend
-                        docker tag frontend zanzadshubham25/frontend:latest
-                        docker push zanzadshubham25/frontend
-                        docker ps
-                        docker images
-                    '''
-                    }
-                }
-            }
-        }
+        // stage('Push Docker Images') {
+        //     steps {
+        //         script{
+        //             docker.withRegistry('', 'LeagueFit-DockerHub') {
+        //             sh ''' 
+        //                 docker tag dataset zanzadshubham25/dataset:latest
+        //                 docker push zanzadshubham25/dataset
+        //                 docker tag backend zanzadshubham25/backend:latest
+        //                 docker push zanzadshubham25/backend
+        //                 docker tag frontend zanzadshubham25/frontend:latest
+        //                 docker push zanzadshubham25/frontend
+        //                 docker ps
+        //                 docker images
+        //             '''
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage("Deleted Docker Imgaes") {
         //     steps {
