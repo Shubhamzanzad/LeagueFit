@@ -18,10 +18,12 @@
       debug:
         var: docker_pull_result
 
-    - name: Start Docker service
-      service:
-        name: docker
-        state: started
-
-    - name: Run Docker Compose
-      command: docker-compose up -d
+    -name: Copy Docker Compose file to host
+    copy: 
+      src: /var/lib/jenkins/workspace/LeagueFit/docker-compose.yml
+      dest: /opt/docker-compose.yml
+    
+    -name: Start Docker Compose
+    command: docker-compose up -d
+    args:
+      chdir: /opt/
