@@ -11,11 +11,6 @@ services:
       - "8081:8081"
     networks:
       - app-network
-    healthcheck:
-      test: ["CMD-SHELL", "ping -c 1 -w 1 localhost >/dev/null || exit 1"]
-      interval: 300s
-      timeout: 10s
-      retries: 3
 
   backend:
     build:
@@ -30,11 +25,6 @@ services:
       - app-network
     depends_on:
       - dataset
-    healthcheck:
-      test: ["CMD-SHELL", "ping -c 1 -w 1 localhost >/dev/null || exit 1"]
-      interval: 300s
-      timeout: 10s
-      retries: 3
 
   frontend:
     build: 
@@ -49,11 +39,6 @@ services:
       - app-network
     depends_on:
       - backend
-    healthcheck:
-      test: ["CMD-SHELL", "ping -c 1 -w 1 localhost >/dev/null || exit 1"]
-      interval: 300s
-      timeout: 10s
-      retries: 3
 
 networks:
   app-network:

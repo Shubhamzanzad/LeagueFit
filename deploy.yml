@@ -1,17 +1,17 @@
 ---
 - name: Pull Docker Images and Run Docker Compose
   hosts: localhost
-  remote_user: zanzad_shubham
+  remote_user: shubham
   become: false
   tasks:
     - name: Pull Docker Images
       docker_image:
-        name: Pull Docker Images
+        name: "{{ item }}"
         source: pull
       loop:
-        - zanzadshubham/dataset
-        - zanzadshubham/backend
-        - zanzadshubham/frontend
+        - zanzadshubham25/dataset
+        - zanzadshubham25/backend
+        - zanzadshubham25/frontend
       register: docker_pull_result
 
     - name: Display Docker Pull Result
@@ -24,9 +24,4 @@
         state: started
 
     - name: Run Docker Compose
-      command: docker-compose up
-      args:
-        chdir: /path/to/docker-compose-directory
-
-    - name: Run Test Script in Python
-      command: python test.py
+      command: docker-compose up -d
