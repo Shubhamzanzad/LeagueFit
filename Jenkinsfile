@@ -47,39 +47,39 @@ pipeline {
         //     }
         // }
 
-        stage('Push Docker Images') {
-            steps {
-                script{
-                    docker.withRegistry('', 'LeagueFit-DockerHub') {
-                    sh ''' 
-                        docker tag dataset zanzadshubham25/dataset:latest
-                        docker push zanzadshubham25/dataset
-                        docker tag backend zanzadshubham25/backend:latest
-                        docker push zanzadshubham25/backend
-                        docker tag frontend zanzadshubham25/frontend:latest
-                        docker push zanzadshubham25/frontend
-                        docker ps
-                        docker images
-                    '''
-                    }
-                }
-            }
-        }
+        // stage('Push Docker Images') {
+        //     steps {
+        //         script{
+        //             docker.withRegistry('', 'LeagueFit-DockerHub') {
+        //             sh ''' 
+        //                 docker tag dataset zanzadshubham25/dataset:latest
+        //                 docker push zanzadshubham25/dataset
+        //                 docker tag backend zanzadshubham25/backend:latest
+        //                 docker push zanzadshubham25/backend
+        //                 docker tag frontend zanzadshubham25/frontend:latest
+        //                 docker push zanzadshubham25/frontend
+        //                 docker ps
+        //                 docker images
+        //             '''
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage("Deleted Docker Imgaes") {
-            steps {
-                script {
-                    sh '''
-                        docker rmi -f backend
-                        docker rmi -f frontend
-                        docker rmi -f dataset
-                        docker rmi -f zanzadshubham25/dataset
-                        docker rmi -f zanzadshubham25/frontend
-                        docker rmi -f zanzadshubham25/backend
-                    '''
-                }
-            }
-        }
+        // stage("Deleted Docker Imgaes") {
+        //     steps {
+        //         script {
+        //             sh '''
+        //                 docker rmi -f backend
+        //                 docker rmi -f frontend
+        //                 docker rmi -f dataset
+        //                 docker rmi -f zanzadshubham25/dataset
+        //                 docker rmi -f zanzadshubham25/frontend
+        //                 docker rmi -f zanzadshubham25/backend
+        //             '''
+        //         }
+        //     }
+        // }
         
         stage('Run Ansible Playbook') {
             steps {
