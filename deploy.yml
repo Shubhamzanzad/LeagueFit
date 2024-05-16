@@ -1,13 +1,12 @@
 ---
 - name: Pull Docker Images and Run Docker Compose
   hosts: localhost
-  become: false 
-
+  become: true
   tasks:
     - name: Pull Docker Images
       docker_image:
         name: "{{ item }}"
-        state: present 
+        state: present
       loop:
         - zanzadshubham25/dataset
         - zanzadshubham25/backend
@@ -25,6 +24,6 @@
       register: docker_service_result
 
     - name: Start Docker Compose services
-      name: Run docker-compose up -d
-      become: true 
-      shell: docker-compose up -d
+      docker_compose:
+        project_src: /Desktop/SPE_Final/LeagueFit/docker-compose.yml
+        state: started
