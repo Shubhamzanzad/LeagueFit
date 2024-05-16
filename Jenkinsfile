@@ -58,16 +58,25 @@ pipeline {
                         docker push zanzadshubham25/backend
                         docker tag frontend zanzadshubham25/frontend:latest
                         docker push zanzadshubham25/frontend
+                        docker ps
+                        docker images
                     '''
                     }
                 }
             }
         }
 
-        stage("Prunning") {
+        stage("Deleted Docker Imgaes") {
             steps {
                 script {
-                    sh 'docker system prune -a --volumes -f'
+                    sh '''
+                        docker rmi -f backend
+                        docker rmi -f frontend
+                        docker rmi -f dataset
+                        docker rmi -f zanzadshubham25/dataset
+                        docker rmi -f zanzadshubham25/frontend
+                        docker rmi -f zanzadshubham25/backend
+                    '''
                 }
             }
         }
