@@ -7,37 +7,35 @@
     ansible_ssh_private_key_file: /home/shubham/.ssh/id_rsa
 
   tasks:
-    - name: Pull Dataset Image
-      docker_image:
-        name: "zanzadshubham25/dataset"
-        source: pull
-      register: docker_pull_dataset
+    # - name: Pull Dataset Image
+    #   docker_image:
+    #     name: "zanzadshubham25/dataset"
+    #     source: pull
+    #   register: docker_pull_dataset
 
-    - name: Display Docker Pull Result for Dataset Image
-      debug:
-        var: docker_pull_dataset
+    # - name: Display Docker Pull Result for Dataset Image
+    #   debug:
+    #     var: docker_pull_dataset
 
-    - name: Pull Frontend Image
-      docker_image:
-        name: "zanzadshubham25/frontend"
-        source: pull
-      register: docker_pull_frontend
+    # - name: Pull Frontend Image
+    #   docker_image:
+    #     name: "zanzadshubham25/frontend"
+    #     source: pull
+    #   register: docker_pull_frontend
 
-    - name: Display Docker Pull Result for Frontend Image
-      debug:
-        var: docker_pull_frontend
+    # - name: Display Docker Pull Result for Frontend Image
+    #   debug:
+    #     var: docker_pull_frontend
       
-    - name: Pull Backend Image
-      docker_image:
-        name: "zanzadshubham25/backend"
-        source: pull
-      register: docker_pull_backend
+    # - name: Pull Backend Image
+    #   docker_image:
+    #     name: "zanzadshubham25/backend"
+    #     source: pull
+    #   register: docker_pull_backend
 
-    - name: Display Docker Pull Result for Backend Image
-      debug:
-        var: docker_pull_backend
+    # - name: Display Docker Pull Result for Backend Image
+    #   debug:
+    #     var: docker_pull_backend
 
     - name: Start Docker Compose services
-      docker_compose:
-        project_src: /docker-compose.yml
-        state: absent
+      command: pwd
