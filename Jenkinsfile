@@ -108,15 +108,7 @@ pipeline {
                 }
             }
         }
-        // stage('Run Ansible Playbook') {
-        //     steps {
-        //         script {
-        //             sh '''
-        //             ansible-playbook deploy.yml -i inventory --become --become-user=root --extra-vars "ansible_become_pass=${ANSIBLE_SUDO_PASS}"
-        //             '''
-        //         }
-        //     }
-        // }
+        
         
     }
     post {
