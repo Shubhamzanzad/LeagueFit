@@ -4,10 +4,9 @@ pipeline {
         DATASET_IMAGE_NAME = 'dataset'
         BACKEND_IMAGE_NAME = 'backend'
         FRONTEND_IMAGE_NAME = 'frontend'
-        GITHUB_REPO_URL = 'https://github.com/SiddharthVPillai/LeagueFit.git'
+        GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
         ANSIBLE_SUDO_PASS = credentials('ansible-sudo-password') 
         PATH = ""
-        // DOCKERHUB_CREDENTIALS = credentials('LeagueFit-DockerHub')
     }
     
     stages {
@@ -52,9 +51,21 @@ pipeline {
         // }
         
 
-        // stage('Dockerhub Login') {
+       
+        // stage('Push Docker Images') {
         //     steps {
-        //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        //         script{
+        //             docker.withRegistry('', 'LeagueFit-DockerHub') {
+        //             sh ''' 
+        //                 docker tag dataset zanzadshubham25/dataset:latest
+        //                 docker push zanzadshubham25/dataset
+        //                 docker tag backend zanzadshubham25/backend:latest
+        //                 docker push zanzadshubham25/backend
+        //                 docker tag frontend zanzadshubham25/frontend:latest
+        //                 docker push zanzadshubham25/frontend
+        //             '''
+        //             }
+        //         }
         //     }
         // }
 
@@ -92,19 +103,19 @@ pipeline {
         //     }
         // }
         
-        // stage('Run Ansible Playbook') {
-        //     steps {
-        //         ansiblePlaybook becomeUser: null,
-        //         colorized: true,
-        //         credentialsId: 'localhost',
-        //         disableHostKeyChecking: true,
-        //         installation: 'Ansible',
-        //         inventory: 'inventory',
-        //         playbook: 'deploy.yml',
-        //         sudoUser: null
-        //     }
-        // }
         stage('Run Ansible Playbook') {
+            steps {
+                ansiblePlaybook becomeUser: null,
+                colorized: true,
+                credentialsId: 'localhost',
+                disableHostKeyChecking: true,
+                installation: 'Ansible',
+                inventory: 'inventory',
+                playbook: 'deploy.yml',
+                sudoUser: null
+            }
+        }
+        stage('Run Ansible Playbook1') {
             steps {
                 script {
                     sh '''
@@ -118,8 +129,6 @@ pipeline {
     post {
         always {
             sh 'docker-compose down --remove-orphans -v'
-            sh 'docker-compose ps'
-            // sh 'docker logout'
         }
     }
 }
