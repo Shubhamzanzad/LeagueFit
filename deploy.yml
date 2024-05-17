@@ -39,13 +39,13 @@
 
     - name: Copy docker-compose to /opt/
       copy:
-        src: /var/lib/jenkins/workspace/LeagueFit/docker-compose.yml
-        dest: /opt/docker-compose.yml
+        src: ./docker-compose.yml
+        dest: ./
 
-    - name: Copy requirements.txt to /opt/
-      copy:
-        src: /var/lib/jenkins/workspace/LeagueFit/backend/requirements.txt
-        dest: /opt/requirements.txt
+    # - name: Copy requirements.txt to /opt/
+    #   copy:
+    #     src: /var/lib/jenkins/workspace/LeagueFit/backend/requirements.txt
+    #     dest: /opt/requirements.txt
 
     - name: Start Docker Compose services
       command: docker-compose up -d
