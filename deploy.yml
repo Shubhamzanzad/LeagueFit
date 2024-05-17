@@ -36,5 +36,5 @@
 
     - name: Start Docker Compose services
       docker_compose:
-        project_src: /docker-compose.yml
+        project_src: Desktop/SPE_Final/LeagueFit/docker-compose.yml
         state: started
