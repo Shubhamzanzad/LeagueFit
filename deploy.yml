@@ -38,6 +38,4 @@
         var: docker_pull_backend
 
     - name: Start Docker Compose services
-      docker_compose:
-        project_src: /var/lib/jenkins/workspace/LeagueFit/docker-compose.yml
-        state: absent
+      command: docker-compose up -d
