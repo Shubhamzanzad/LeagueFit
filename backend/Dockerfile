@@ -1,18 +1,23 @@
+# Start from a base image
 FROM python:3.10-alpine
 
+# Set the working directory in the container
 WORKDIR /app/
 
+# Copy the requirements file into the container
 COPY ./requirements.txt .
-RUN apk update && apk add --no-cache gcc && pip install -r requirements.txt
-COPY . .
-# RUN pip install --no-cache-dir pandas
-# RUN pip install --no-cache-dir scikit-learn
-# RUN pip install --no-cache-dir streamlit
-# RUN pip install --no-cache-dir typing
-# RUN pip install --no-cache-dir fastapi
-# RUN pip install --no-cache-dir uvicorn
 
-# COPY ./requirements.txt .
-# RUN pip install -r requirements.txt
-EXPOSE 8000
-CMD ["python", "backend.py"]
+# Update the package index and install necessary packages
+RUN apk update \
+    && apk add --no-cache \
+        gcc \
+        musl-dev \ 
+        python3-dev \
+        g++ \
+    && pip install -r requirements.txt
+
+# Copy the rest of the application code into the container
+COPY . .
+
+# Define the command to run the application
+CMD [ "python", "app.py" ]
