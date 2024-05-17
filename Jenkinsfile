@@ -82,26 +82,26 @@ pipeline {
         //     }
         // }
         
-        // stage('Run Ansible Playbook') {
-        //     steps {
-        //         ansiblePlaybook becomeUser: null,
-        //         colorized: true,
-        //         credentialsId: 'localhost',
-        //         disableHostKeyChecking: true,
-        //         installation: 'Ansible',
-        //         inventory: 'inventory',
-        //         playbook: 'deploy.yml',
-        //         sudoUser: null
-        //     }
-        // }
         stage('Run Ansible Playbook') {
             steps {
-                script {
-                    sh '''
-                    ansible-playbook deploy.yml -i inventory --become --become-user=root --extra-vars "ansible_become_pass=${ANSIBLE_SUDO_PASS}"
-                    '''
-                }
+                ansiblePlaybook becomeUser: null,
+                colorized: true,
+                credentialsId: 'localhost',
+                disableHostKeyChecking: true,
+                installation: 'Ansible',
+                inventory: 'inventory',
+                playbook: 'deploy.yml',
+                sudoUser: null
             }
+        }
+        // stage('Run Ansible Playbook') {
+        //     steps {
+        //         script {
+        //             sh '''
+        //             ansible-playbook deploy.yml -i inventory --become --become-user=root --extra-vars "ansible_become_pass=${ANSIBLE_SUDO_PASS}"
+        //             '''
+        //         }
+        //     }
         }
         
     }
