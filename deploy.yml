@@ -46,15 +46,15 @@
         var: current_working_directory.stdout
 
 
-    # - name: Copy project directory to target
-    #   copy:
-    #     src: /var/lib/jenkins/workspace/LeagueFit/
-    #     dest: /opt/LeagueFit/
+    - name: Copy project directory to target
+      copy:
+        src: /var/lib/jenkins/workspace/LeagueFit/
+        dest: /opt/LeagueFit/
 
     - name: Build Docker Compose services
       command: docker-compose up --build -d 
-      # args:
-      #   chdir: /opt/
+      args:
+        chdir: /opt/
 
     # - name: Start Docker Compose services in detached mode
     #   command: docker-compose up -d
