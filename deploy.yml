@@ -42,10 +42,10 @@
       debug:
         var: docker_pull_backend
 
-    -name: Copy Docker Compose file to host
-     copy: 
-      src: /var/lib/jenkins/workspace/LeagueFit/docker-compose.yml
-      dest: /opt/docker-compose.yml
+    - name: Copy Docker Compose file to host
+      copy: 
+        src: /var/lib/jenkins/workspace/LeagueFit/docker-compose.yml
+        dest: /opt/docker-compose.yml
 
     - name: Start Docker Compose services
       command: docker-compose up -d
