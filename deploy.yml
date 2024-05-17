@@ -37,10 +37,10 @@
       debug:
         var: docker_pull_backend
 
-    - name: Copy project directory to target
-      copy:
-        src: /var/lib/jenkins/workspace/LeagueFit/
-        dest: /opt/LeagueFit/
+    # - name: Copy project directory to target
+    #   copy:
+    #     src: /var/lib/jenkins/workspace/LeagueFit/
+    #     dest: /opt/LeagueFit/
 
     - name: Build Docker Compose services
       command: docker-compose build
