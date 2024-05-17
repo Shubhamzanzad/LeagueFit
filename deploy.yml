@@ -37,5 +37,10 @@
     #   debug:
     #     var: docker_pull_backend
 
-    - name: Start Docker Compose services
-      command: echo pwd
+  - name: Start Docker Compose services
+    command: pwd
+    register: current_working_directory
+
+  - name: Display current working directory
+    debug:
+      var: current_working_directory.stdout
