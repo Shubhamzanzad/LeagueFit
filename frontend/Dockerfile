@@ -1,12 +1,7 @@
-FROM python:3.10-alpine
-
+FROM python:3.9-slim
 WORKDIR /app/
-
 COPY ./requirements.txt .
-RUN apk update && \
-        cmake && \
-    pip install -r requirements.txt
-
+RUN pip install -r requirements.txt
 COPY . .
 # RUN pip install --no-cache-dir pandas
 # RUN pip install --no-cache-dir scikit-learn
