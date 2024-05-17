@@ -18,7 +18,7 @@ def handle_click(attribute, recommend, contribution):
             "passing": attribute[10],
             "dribbling": attribute[2],
             "physic": attribute[11],
-            "contribution_type": contribution,  # Assuming this is fixed or correctly retrieved
+            "contribution_type": contribution, 
             "league_name": "xyz",
             "club_name": recommend['team_name'],
             "attacking": attribute[1],
@@ -37,7 +37,7 @@ def handle_click(attribute, recommend, contribution):
 
 
 def main():
-    response = requests.get("http://dataset:8081/final_data.csv")
+    response = requests.get("http://dataset:8008/getDf")
     if response.status_code == 200:
         df = pd.read_csv(io.StringIO(response.text))
         st.title("LeagueFit")
@@ -46,10 +46,10 @@ def main():
         with col1:
             overall = col1.slider("Overall", 0.0, 100.0, 50.0)
             potential = col1.slider("Potential", 0.0, 100.0, 50.0)
-            age = col1.slider("Age", 0.0, 40.0, 20.0)
-            height = col1.slider("Height", 15.0, 40.0, 20.0)    
+            age = col1.slider("Age", 0.0, 40.0, 20.0,step=1.0)
+            height = col1.slider("Height", 160.0, 240.0, 180.0)    
             weight = col1.slider("Weight", 50.0, 120.0, 70.0)
-            reputation = col1.slider("International Reputation", 1.0, 5.0, 2.0)
+            reputation = col1.slider("International Reputation", 1.0, 5.0, 2.0,step=1.0)
             pace = col1.slider("Pace", 0.0, 100.0, 50.0)
             shooting = col1.slider("Shooting", 0.0, 100.0, 50.0)    
             movement = col1.slider("Movement", 0.0, 100.0, 50.0)

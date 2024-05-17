@@ -1,5 +1,6 @@
-FROM python:3.9-slim
+FROM python:3.9-slim AS build
 WORKDIR /app
 COPY . .
-EXPOSE 8081
-CMD ["python", "-m", "http.server", "8081"]
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8008
+CMD ["python", "server.py"]

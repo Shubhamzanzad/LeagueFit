@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from train import train
-import io
 import requests
 import logging
 
@@ -23,6 +22,8 @@ def recommend(vec: list[int], k: int, pivot_table: pd.DataFrame, avg_wage: pd.Da
 
 if __name__ == "__main__":
     v = [23.0, 59.4, 72.0, 16.066667, 180.0, 1.0, 64.166667, 68.2, 75.0, 67.0, 67.0, 67.9, 80.0, 65.0, 57.0, 65.0, 74.0]
-    response = requests.get("http://dataset:8081/final_data.csv")
-    df = pd.read_csv(io.StringIO(response.text))
-    print(recommend(v, 5, df))
+    response = requests.get("http://localhost:8008/getDf")
+    data_json = response.json()
+    df = pd.read_json(data_json,orient='records')
+    pivot_table, avg_wage = train(df)
+    print(recommend(v, 5, pivot_table,avg_wage))
