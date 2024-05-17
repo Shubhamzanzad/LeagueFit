@@ -37,10 +37,10 @@
       debug:
         var: docker_pull_backend
 
-    - name: Copy files to a directory
-      copy:
-        src: /var/lib/jenkins/workspace/LeagueFit/docker-compose.yml
-        dest: /opt/docker-compose.yml
+    # - name: Copy files to a directory
+    #   copy:
+    #     src: /var/lib/jenkins/workspace/LeagueFit/docker-compose.yml
+    #     dest: /opt/docker-compose.yml
 
     - name: Start Docker Compose services
       command: docker-compose up -d
