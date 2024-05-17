@@ -1,30 +1,40 @@
 ---
-- name: Pull Docker Images and Run Docker Compose
+- name: Pull Docker Image from Docker Hub
   hosts: localhost
-  become: true
+  remote_user: zanzadshubham25
+  become: false
   tasks:
-    - name: Pull Docker Images
+    - name: Pull Dataset Image
       docker_image:
-        name: "{{ item }}"
+        name: "zanzadshubham25/dataset"
         source: pull
-        state: present
-      loop:
-        - zanzadshubham25/dataset
-        - zanzadshubham25/backend
-        - zanzadshubham25/frontend
       register: docker_pull_result
 
     - name: Display Docker Pull Result
       debug:
         var: docker_pull_result
 
-    - name: Verify Docker service is running (Optional)
-      service:
-        name: docker
-        state: started
-      register: docker_service_result
+    - name: Pull Frontend Image
+      docker_image:
+        name: "zanzadshubham25/frontend"
+        source: pull
+      register: docker_pull_result
+
+    - name: Display Docker Pull Result
+      debug:
+        var: docker_pull_result
+      
+    - name: Pull Backend Image
+      docker_image:
+        name: "zanzadshubham25/backend"
+        source: pull
+      register: docker_pull_result
+
+    - name: Display Docker Pull Result
+      debug:
+        var: docker_pull_result
 
     - name: Start Docker Compose services
       docker_compose:
-        project_src: /Desktop/SPE_Final/LeagueFit/docker-compose.yml
+        project_src: /docker-compose.yml
         state: started
