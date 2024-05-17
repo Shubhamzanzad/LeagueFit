@@ -35,6 +35,4 @@
         var: docker_pull_result
 
     - name: Start Docker Compose services
-      docker_compose:
-        project_src: /home/shubham/Desktop/SPE_Final/LeagueFit/docker-compose.yml
-        state: present
+      shell: docker-compose up -d
