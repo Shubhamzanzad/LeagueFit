@@ -1,43 +1,35 @@
 ---
-- name: Pull Docker Image from Docker Hub
+- name: Pull Docker Images in Order
   hosts: localhost
   remote_user: jenkins
   become: true
   vars:
     ansible_ssh_private_key_file: /home/shubham/.ssh/id_rsa
+    images:
+      - name: "zanzadshubham25/dataset"
+      - name: "zanzadshubham25/frontend"
+      - name: "zanzadshubham25/backend"
 
   tasks:
-    - name: Pull Dataset Image
-      docker_image:
-        name: "zanzadshubham25/dataset"
-        source: pull
-      register: docker_pull_dataset
+  - loop: "{{ images }}"
+    loop_control:
+      loop_var: image
+    tasks:
+      - name: Pull Image {{ image.name }}
+        docker_image:
+          name: "{{ image.name }}"
+          source: pull
+        register: docker_pull_result
 
-    - name: Display Docker Pull Result for Dataset Image
-      debug:
-        var: docker_pull_dataset
+      - name: Display Docker Pull Result for Image {{ image.name }}
+        debug:
+          var: docker_pull_result
 
-    - name: Pull Frontend Image
-      docker_image:
-        name: "zanzadshubham25/frontend"
-        source: pull
-      register: docker_pull_frontend
+      - debug:
+          msg: "Waiting for previous image pull to finish"
+        when: image.name != images[0].name  # Skip waiting for the first image
 
-    - name: Display Docker Pull Result for Frontend Image
-      debug:
-        var: docker_pull_frontend
-      
-    - name: Pull Backend Image
-      docker_image:
-        name: "zanzadshubham25/backend"
-        source: pull
-      register: docker_pull_backend
-
-    - name: Display Docker Pull Result for Backend Image
-      debug:
-        var: docker_pull_backend
-
-    - name: Start Docker Compose services
-      docker_compose:
-        project_src: /home/shubham/Desktop/SPE_Final/LeagueFit/docker-compose.yml
-        state: started
+  - name: Start Docker Compose services
+    docker_compose:
+      project_src: /home/shubham/Desktop/SPE_Final/LeagueFit/docker-compose.yml
+      state: started

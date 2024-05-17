@@ -1,8 +1,8 @@
-version: '3.8'
+version: "3.8"
 
 services:
   dataset:
-    build: 
+    build:
       context: ./dataset
     container_name: dataset
     volumes:
@@ -18,7 +18,7 @@ services:
     container_name: backend
     ports:
       - "8000:8000"
-    volumes:  
+    volumes:
       - ./backend:/app
     networks:
       - app-network
@@ -26,7 +26,7 @@ services:
       - dataset
 
   frontend:
-    build: 
+    build:
       context: ./frontend
     container_name: frontend
     ports:
