@@ -1,7 +1,7 @@
 FROM python:3.9-slim AS build
 WORKDIR /app
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r ./requirements.txt
+RUN pip install --no-cache-dir -r ./backend/requirements.txt
 COPY . .
 EXPOSE 8000
 CMD ["python", "backend.py"]
