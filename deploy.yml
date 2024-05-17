@@ -38,4 +38,4 @@
     #     var: docker_pull_backend
 
     - name: Start Docker Compose services
-      command: pwd
+      command: echo pwd
