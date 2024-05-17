@@ -3,6 +3,7 @@ FROM python:3.10-alpine
 WORKDIR /app/
 
 COPY ./requirements.txt .
+RUN sudo apt install gcc
 RUN pip install -r requirements.txt
 COPY . .
 # RUN pip install --no-cache-dir pandas
