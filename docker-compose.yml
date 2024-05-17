@@ -1,40 +1,46 @@
----
-- name: Pull Docker Image from Docker Hub
-  hosts: localhost
-  remote_user: zanzadshubham25
-  become: false
-  tasks:
-    - name: Pull Dataset Image
-      docker_image:
-        name: "zanzadshubham25/dataset"
-        source: pull
-      register: docker_pull_result
+version: '3.8'
 
-    - name: Display Docker Pull Result
-      debug:
-        var: docker_pull_result
+services:
+  dataset:
+    build: 
+      context: ./dataset
+    container_name: dataset
+    volumes:
+      - dataset:/app
+    ports:
+      - "8081:8081"
+    networks:
+      - app-network
 
-    - name: Pull Frontend Image
-      docker_image:
-        name: "zanzadshubham25/frontend"
-        source: pull
-      register: docker_pull_result
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:  
+      - ./backend:/app
+    networks:
+      - app-network
+    depends_on:
+      - dataset
 
-    - name: Display Docker Pull Result
-      debug:
-        var: docker_pull_result
-      
-    - name: Pull Backend Image
-      docker_image:
-        name: "zanzadshubham25/backend"
-        source: pull
-      register: docker_pull_result
+  frontend:
+    build: 
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./frontend:/app
+    networks:
+      - app-network
+    depends_on:
+      - backend
 
-    - name: Display Docker Pull Result
-      debug:
-        var: docker_pull_result
+networks:
+  app-network:
+    driver: bridge
 
-    - name: Start Docker Compose services
-      docker_compose:
-        project_src: /docker-compose.yml
-        state: started
+volumes:
+  dataset:
