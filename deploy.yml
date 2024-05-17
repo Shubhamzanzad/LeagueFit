@@ -2,7 +2,7 @@
 - name: Pull Docker Image from Docker Hub
   hosts: localhost
   remote_user: zanzadshubham25
-  become: false
+  become: true
   tasks:
     - name: Pull Dataset Image
       docker_image:
