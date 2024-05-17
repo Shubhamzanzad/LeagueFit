@@ -40,7 +40,7 @@
     - name: Copy files to a directory
       copy: 
         src: /var/lib/jenkins/workspace/LeagueFit/deploy.yml
-        desc: /opt/docker-compose.yml
+        dest: /opt/docker-compose.yml
 
     - name: Start Docker Compose services
       command: docker-compose up -d
