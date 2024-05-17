@@ -37,6 +37,15 @@
       debug:
         var: docker_pull_backend
 
+    - name: Start Docker Compose services
+      command: ls -R
+      register: current_working_directory
+
+    - name: Display current working directory
+      debug:
+        var: current_working_directory.stdout
+
+
     # - name: Copy project directory to target
     #   copy:
     #     src: /var/lib/jenkins/workspace/LeagueFit/
@@ -44,10 +53,10 @@
 
     - name: Build Docker Compose services
       command: docker-compose build
-      args:
-        chdir: /opt/
+      # args:
+      #   chdir: /opt/
 
     - name: Start Docker Compose services in detached mode
       command: docker-compose up -d
-      args:
-        chdir: /opt/
+      # args:
+      #   chdir: /opt/
