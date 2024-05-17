@@ -1,5 +1,5 @@
 ---
-- name: Pull Docker Images from Docker Hub and Build Locally
+- name: Pull Docker Image from Docker Hub
   hosts: localhost
   remote_user: jenkins
   become: true
@@ -37,12 +37,7 @@
       debug:
         var: docker_pull_backend
 
-    - name: Build Docker Images Locally
-      command: docker-compose build
-      args:
-        chdir: /home/shubham/Desktop/SPE_Final/LeagueFit/
-
     - name: Start Docker Compose services
       docker_compose:
-        project_src: /home/shubham/Desktop/SPE_Final/LeagueFit/docker-compose.yml
-        state: started
+        project_src: Desktop/SPE_Final/LeagueFit/docker-compose.yml
+        state: absent
