@@ -6,13 +6,7 @@
   vars:
     ansible_ssh_private_key_file: /home/shubham/.ssh/id_rsa
 
-  tasks:It seems like you're encountering a permission denied error while trying to stop a container named dataset. This error is likely occurring because the user running the Docker commands does not have the necessary permissions to stop the container.
-
-Here are a few steps you can take to troubleshoot and potentially resolve this issue:
-
-    Check Docker Permissions: Ensure that the user running the Docker commands has the necessary permissions to manage containers. Typically, this user needs to be a member of the docker group.
-
-    Verify Container Ownership: Check the ownership of the Docker containers and related files. Ensure that the user running the Docker commands has appropriate ownership or permissions to manage these resources.
+  tasks:
     - name: Pull Dataset Image
       docker_image:
         name: "zanzadshubham25/dataset"
