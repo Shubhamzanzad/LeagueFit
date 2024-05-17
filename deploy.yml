@@ -1,38 +1,43 @@
 ---
 - name: Pull Docker Image from Docker Hub
   hosts: localhost
-  remote_user: zanzadshubham25
+  remote_user: jenkins
   become: true
+  vars:
+    ansible_ssh_private_key_file: /home/shubham/.ssh/id_rsa
+
   tasks:
     - name: Pull Dataset Image
       docker_image:
         name: "zanzadshubham25/dataset"
         source: pull
-      register: docker_pull_result
+      register: docker_pull_dataset
 
-    - name: Display Docker Pull Result
+    - name: Display Docker Pull Result for Dataset Image
       debug:
-        var: docker_pull_result
+        var: docker_pull_dataset
 
     - name: Pull Frontend Image
       docker_image:
         name: "zanzadshubham25/frontend"
         source: pull
-      register: docker_pull_result
+      register: docker_pull_frontend
 
-    - name: Display Docker Pull Result
+    - name: Display Docker Pull Result for Frontend Image
       debug:
-        var: docker_pull_result
+        var: docker_pull_frontend
       
     - name: Pull Backend Image
       docker_image:
         name: "zanzadshubham25/backend"
         source: pull
-      register: docker_pull_result
+      register: docker_pull_backend
 
-    - name: Display Docker Pull Result
+    - name: Display Docker Pull Result for Backend Image
       debug:
-        var: docker_pull_result
+        var: docker_pull_backend
 
     - name: Start Docker Compose services
-      shell: docker-compose up -d
+      docker_compose:
+        project_src: /home/shubham/Desktop/SPE_Final/LeagueFit/docker-compose.yml
+        state: started
