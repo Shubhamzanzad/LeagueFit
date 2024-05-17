@@ -42,7 +42,13 @@
         src: /var/lib/jenkins/workspace/LeagueFit/
         dest: /opt/LeagueFit/
 
-    - name: Start Docker Compose services
-      command: docker-compose up -d
-      args:
-        chdir: /opt/
+    - name: Build Docker Compose services
+  command: docker-compose build
+  args:
+    chdir: /opt/
+
+- name: Start Docker Compose services in detached mode
+  command: docker-compose up -d
+  args:
+    chdir: /opt/
+
