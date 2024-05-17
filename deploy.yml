@@ -1,5 +1,5 @@
 ---
-- name: Pull Docker Image from Docker Hub
+- name: Pull Docker Image from Docker Hub and do Docker Compose
   hosts: localhost
   remote_user: jenkins
   become: true
@@ -37,15 +37,10 @@
       debug:
         var: docker_pull_backend
 
-    - name: Copy docker-compose to /opt/
+    - name: Copy project directory to target
       copy:
-        src: ./docker-compose.yml
-        dest: ./
-
-    # - name: Copy requirements.txt to /opt/
-    #   copy:
-    #     src: /var/lib/jenkins/workspace/LeagueFit/backend/requirements.txt
-    #     dest: /opt/requirements.txt
+        src: /var/lib/jenkins/workspace/LeagueFit/
+        dest: /opt/LeagueFit/
 
     - name: Start Docker Compose services
       command: docker-compose up -d
