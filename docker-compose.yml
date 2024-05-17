@@ -20,7 +20,6 @@ services:
       - "8000:8000"
     volumes:  
       - ./backend:/app
-      # - dataset:/dataset
     networks:
       - app-network
     depends_on:
@@ -34,7 +33,6 @@ services:
       - "8501:8501"
     volumes:
       - ./frontend:/app
-      # - dataset:/dataset
     networks:
       - app-network
     depends_on:

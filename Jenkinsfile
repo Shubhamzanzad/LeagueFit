@@ -27,13 +27,13 @@ pipeline {
         //     }
         // }
         
-        // stage("Prunning") {
-        //     steps {
-        //         script {
-        //             sh 'docker system prune -a --volumes -f'
-        //         }
-        //     }
-        // }
+        stage("Prunning") {
+            steps {
+                script {
+                    sh 'docker system prune -a --volumes -f'
+                }
+            }
+        }
         
 
         // stage('Build Docker Images') {
@@ -49,8 +49,6 @@ pipeline {
         //         }
         //     }
         // }
-        
-
        
         // stage('Push Docker Images') {
         //     steps {
@@ -63,25 +61,6 @@ pipeline {
         //                 docker push zanzadshubham25/backend
         //                 docker tag frontend zanzadshubham25/frontend:latest
         //                 docker push zanzadshubham25/frontend
-        //             '''
-        //             }
-        //         }
-        //     }
-        // }
-
-        // stage('Push Docker Images') {
-        //     steps {
-        //         script{
-        //             docker.withRegistry('', 'LeagueFit-DockerHub') {
-        //             sh ''' 
-        //                 docker tag dataset zanzadshubham25/dataset:latest
-        //                 docker push zanzadshubham25/dataset
-        //                 docker tag backend zanzadshubham25/backend:latest
-        //                 docker push zanzadshubham25/backend
-        //                 docker tag frontend zanzadshubham25/frontend:latest
-        //                 docker push zanzadshubham25/frontend
-        //                 docker ps
-        //                 docker images
         //             '''
         //             }
         //         }
@@ -124,6 +103,15 @@ pipeline {
                 }
             }
         }
+        // stage('Run Ansible Playbook') {
+        //     steps {
+        //         script {
+        //             sh '''
+        //             ansible-playbook deploy.yml -i inventory --become --become-user=root --extra-vars "ansible_become_pass=${ANSIBLE_SUDO_PASS}"
+        //             '''
+        //         }
+        //     }
+        // }
         
     }
     post {
