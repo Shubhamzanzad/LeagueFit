@@ -26,7 +26,7 @@
     - name: Display Docker Pull Result for Frontend Image
       debug:
         var: docker_pull_frontend
-      
+
     - name: Pull Backend Image
       docker_image:
         name: "zanzadshubham25/backend"
@@ -38,7 +38,7 @@
         var: docker_pull_backend
 
     - name: Copy files to a directory
-      copy: 
+      copy:
         src: /var/lib/jenkins/workspace/LeagueFit/deploy.yml
         dest: /opt/docker-compose.yml
 
@@ -46,4 +46,3 @@
       command: docker-compose up -d
       args:
         chdir: /opt/
-
