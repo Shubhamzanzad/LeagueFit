@@ -52,11 +52,11 @@
     #     dest: /opt/LeagueFit/
 
     - name: Build Docker Compose services
-      command: docker-compose build
+      command: docker-compose up --build -d 
       # args:
       #   chdir: /opt/
 
-    - name: Start Docker Compose services in detached mode
-      command: docker-compose up -d
-      # args:
-      #   chdir: /opt/
+    # - name: Start Docker Compose services in detached mode
+    #   command: docker-compose up -d
+    #   # args:
+    #   #   chdir: /opt/

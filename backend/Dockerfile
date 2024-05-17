@@ -8,13 +8,15 @@ WORKDIR /app/
 COPY ./requirements.txt .
 
 # Update the package index and install necessary packages
-RUN apk update \
-    && apk add --no-cache \
+RUN apk update && \
+    apk add --no-cache \
         gcc \
-        musl-dev \ 
+        musl-dev \
         python3-dev \
         g++ \
-    && pip install -r requirements.txt
+        cmake && \
+    pip install -r requirements.txt
+
 
 # Copy the rest of the application code into the container
 COPY . .
