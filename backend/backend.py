@@ -31,6 +31,9 @@ def _recommend(data:NumberList):
     logging.info("recommending teams")
     return teams.to_dict(orient='records')
 
+@app.post("/addPlayer")
+def _recommend(attribute:NumberList):
+    pass
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
