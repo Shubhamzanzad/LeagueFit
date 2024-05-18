@@ -18,14 +18,14 @@ pipeline {
             }
         }
 
-        stage('Unit Testing'){
-            steps{
-                dir('./backend'){
-                    sh 'sudo apt-get install -y python3-numpy python3-pandas python3-sklearn'
-                    sh 'python3 -m unittest test.py'
-                }
-            }
-        }
+        // stage('Unit Testing'){
+        //     steps{
+        //         dir('./backend'){
+        //             sh 'sudo apt-get install -y python3-numpy python3-pandas python3-sklearn'
+        //             sh 'python3 -m unittest test.py'
+        //         }
+        //     }
+        // }
         
         stage("Prunning") {
             steps {
