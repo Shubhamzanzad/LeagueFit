@@ -41,9 +41,9 @@
       debug:
         var: docker_pull_backend
       
-    - name: Start Docker service
+    - name: Build Docker Compose
       service:
         name: docker
         state: started
-    - name: Running container
+    - name: Run Docker Compose
       shell: docker-compose up -d
