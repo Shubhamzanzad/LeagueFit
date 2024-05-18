@@ -1,6 +1,6 @@
 - name: Deploy LeagueFit
   hosts: localhost
-  remote_user: shubham
+  remote_user: jenkins
   become: false
   # become_method: sudo
   # become_user: root
