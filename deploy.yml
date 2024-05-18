@@ -1,9 +1,9 @@
 - name: Deploy LeagueFit
   hosts: localhost
   remote_user: shubham
-  become: true
-  become_method: sudo
-  become_user: root
+  become: false
+  # become_method: sudo
+  # become_user: root
   vars:
     ansible_ssh_private_key_file: /home/shubham/.ssh/id_rsa
 
@@ -40,7 +40,10 @@
     - name: Display Docker Pull Result for Backend Image
       debug:
         var: docker_pull_backend
-
-    - name: Build Docker Compose services
-      command: docker-compose up -d
-        
+      
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+    - name: Running container
+      shell: docker-compose up -d
