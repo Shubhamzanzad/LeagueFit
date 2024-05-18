@@ -1,6 +1,39 @@
 import streamlit as st
 import requests
 
+def handle_click(attribute, recommend, contribution):
+    try:
+        response = requests.post("http://backend:8000/addPlayer", json={
+            "overall": attribute[8],
+            "potential": attribute[12],
+            "wage_eur": recommend['wage_eur'],
+            "age": attribute[0],
+            "height_cm": attribute[4],
+            "weight_kg": attribute[16],
+            "international_reputation": attribute[5],
+            "pace": attribute[9],
+            "shooting": attribute[14],
+            "passing": attribute[10],
+            "dribbling": attribute[2],
+            "physic": attribute[11],
+            "contribution_type": contribution, 
+            "league_name": "xyz",
+            "club_name": recommend['team_name'],
+            "attacking": attribute[1],
+            "skill": attribute[15],
+            "power": attribute[13],
+            "mentality": attribute[6],
+            "goalkeeping": attribute[3],
+            "movement": attribute[7]
+        })
+        if response.status_code == 200:
+            st.success(f"Successfully added player to {recommend['team_name']}!")
+        else:
+            st.error("Failed to add player.")
+    except Exception as e:
+        st.error(f"Failed to add player: {e}")
+
+
 def main():
     st.title("LeagueFit")
     st.header("Enter Player Attributes")

@@ -1,5 +1,4 @@
 pandas
 streamlit
 typing
-fastapi
-uvicorn
+

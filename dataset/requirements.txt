@@ -1,0 +1,5 @@
+numpy
+pandas
+typing
+fastapi
+uvicorn
