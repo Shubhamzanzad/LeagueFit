@@ -1,30 +1,51 @@
----
-- name: Pull Docker Images and Run Docker Compose
+- name: Deploy LeagueFit
   hosts: localhost
+  remote_user: shubham
   become: true
+  become_method: sudo
+  become_user: root
+  vars:
+    ansible_ssh_private_key_file: /home/shubham/.ssh/id_rsa
+
   tasks:
-    - name: Pull Docker Images
-      docker_image:
-        name: "{{ item }}"
+    - name: Pull Dataset Image
+      community.general.docker_image:
+        name: "zanzadshubham25/dataset"
         source: pull
-        state: present
-      loop:
-        - zanzadshubham25/dataset
-        - zanzadshubham25/backend
-        - zanzadshubham25/frontend
-      register: docker_pull_result
+        force_source: true
+      register: docker_pull_dataset
 
-    - name: Display Docker Pull Result
+    - name: Display Docker Pull Result for Dataset Image
       debug:
-        var: docker_pull_result
+        var: docker_pull_dataset
 
-    - name: Verify Docker service is running (Optional)
+    - name: Pull Backend Image
+      community.general.docker_image:
+        name: "zanzadshubham25/backend"
+        source: pull
+        force_source: true
+      register: docker_pull_backend
+
+    - name: Display Docker Pull Result for Backend Image
+      debug:
+        var: docker_pull_backend
+      
+    - name: Pull Frontend Image
+      community.general.docker_image:
+        name: "zanzadshubham25/frontend"
+        source: pull
+        force_source: true
+      register: docker_pull_frontend
+
+    - name: Display Docker Pull Result for Frontend Image
+      debug:
+        var: docker_pull_frontend
+
+    - name: Start Docker Compose
       service:
         name: docker
         state: started
-      register: docker_service_result
-
-    - name: Start Docker Compose services
-      docker_compose:
-        project_src: /Desktop/SPE_Final/LeagueFit/docker-compose.yml
-        state: started
+    - name: Run Docker Compose
+      shell: docker-compose up -d
+      args:
+        chdir: /home/shubham/Desktop/SPE_FINAL/LeagueFit

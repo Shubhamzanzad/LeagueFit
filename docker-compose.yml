@@ -1,5 +1,4 @@
 version: "3.8"
-
 services:
   dataset:
     build:
@@ -11,7 +10,6 @@ services:
       - ./dataset:/app
     networks:
       - app-network
-
   backend:
     build:
       context: ./backend
@@ -20,12 +18,10 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
-      # - dataset:/dataset
     networks:
       - app-network
     depends_on:
       - dataset
-
   frontend:
     build:
       context: ./frontend
@@ -34,7 +30,6 @@ services:
       - "8501:8501"
     volumes:
       - ./frontend:/app
-      # - dataset:/dataset
     networks:
       - app-network
     depends_on:

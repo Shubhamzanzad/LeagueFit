@@ -1,3 +1,3 @@
-localhost ansible_connection= ansible_user=shubham ansible_ssh_pass=Shubham.123
-ansible_ssh_common_args = '-o StrictHostKeyChecking=no'
+shubham ansible_connection=ssh ansible_user=shubham ansible_ssh_private_key_file=root
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 localhost ansible_connection=local
