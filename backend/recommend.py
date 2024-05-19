@@ -7,7 +7,6 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(filename)s - %(message)s")
 
-
 def recommend(vec: list[int], k: int, pivot_table: pd.DataFrame, avg_wage: pd.DataFrame) -> pd.DataFrame:
     """
     Takes a vector(attribute vector), avg_wage, pivot_table, and k (number of recommendations) and recommends k teams 

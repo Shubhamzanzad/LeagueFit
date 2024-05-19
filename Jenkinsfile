@@ -17,16 +17,14 @@ pipeline {
                 }
             }
         }
-
-        // stage('Unit Testing'){
-        //     steps{
-        //         dir('./backend'){
-        //             sh 'sudo apt-get install -y python3-numpy python3-pandas python3-sklearn'
-        //             sh 'python3 -m unittest test.py'
-        //         }
-        //     }
-        // }
-        
+        stage('Unit Testing'){
+            steps{
+                dir('./backend'){
+                    sh 'sudo apt-get install -y python3-numpy python3-pandas python3-sklearn'
+                    sh 'python3 -m unittest test.py'
+                }
+            }
+        }
         stage("Prunning") {
             steps {
                 script {
@@ -34,71 +32,35 @@ pipeline {
                 }
             }
         }
-        
-
-        // stage('Build Docker Images') {
-        //     steps {
-        //         dir('./dataset') {
-        //             sh "docker build -t ${DATASET_IMAGE_NAME} ."
-        //         }
-        //         dir('./backend') {
-        //             sh "docker build -t ${BACKEND_IMAGE_NAME} ."
-        //         }
-        //         dir('./frontend') {
-        //             sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
-        //         }
-        //     }
-        // }
-       
-        // stage('Push Docker Images') {
-        //     steps {
-        //         script{
-        //             docker.withRegistry('', 'LeagueFit-DockerHub') {
-        //             sh ''' 
-        //                 docker tag dataset zanzadshubham25/dataset:latest
-        //                 docker push zanzadshubham25/dataset
-        //                 docker tag backend zanzadshubham25/backend:latest
-        //                 docker push zanzadshubham25/backend
-        //                 docker tag frontend zanzadshubham25/frontend:latest
-        //                 docker push zanzadshubham25/frontend
-        //             '''
-        //             }
-        //         }
-        //     }
-        // }
-
-        // stage("Deleted Docker Imgaes") {
-        //     steps {
-        //         script {
-        //             sh '''
-        //                 docker rmi -f backend
-        //                 docker rmi -f frontend
-        //                 docker rmi -f dataset
-        //                 docker rmi -f zanzadshubham25/dataset
-        //                 docker rmi -f zanzadshubham25/frontend
-        //                 docker rmi -f zanzadshubham25/backend
-        //             '''
-        //         }
-        //     }
-        // }
-        
-        // stage('Run Ansible Playbook') {
-        //     steps {
-        //         ansiblePlaybook(
-        //             becomeUser: null,
-        //             colorized: true,
-        //             credentialsId: 'jenkins@localhost',
-        //             disableHostKeyChecking: true,
-        //             installation: 'Ansible',
-        //             inventory: 'inventory',
-        //             playbook: 'deploy.yml',
-        //             sudoUser: null,
-        //             extraVars: [
-        //                 ansible_become_pass: "${env.ANSIBLE_SUDO_PASS}"
-        //             ]
-        //         )
-        //     }
-        // }
+        stage('Build Docker Images') {
+            steps {
+                dir('./dataset') {
+                    sh "docker build -t ${DATASET_IMAGE_NAME} ."
+                }
+                dir('./backend') {
+                    sh "docker build -t ${BACKEND_IMAGE_NAME} ."
+                }
+                dir('./frontend') {
+                    sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
+                }
+            }
+        }
+        stage('Push Docker Images') {
+            steps {
+                script{
+                    docker.withRegistry('', 'LeagueFit-DockerHub') {
+                    sh ''' 
+                        docker tag dataset zanzadshubham25/dataset:latest
+                        docker push zanzadshubham25/dataset
+                        docker tag backend zanzadshubham25/backend:latest
+                        docker push zanzadshubham25/backend
+                        docker tag frontend zanzadshubham25/frontend:latest
+                        docker push zanzadshubham25/frontend
+                    '''
+                    }
+                }
+            }
+        }
         stage('Run Ansible Playbook') {
             steps {
                 script {
@@ -108,12 +70,10 @@ pipeline {
                 }
             }
         }
-        
-        
     }
     post {
         always {
-            sh 'docker-compose down --remove-orphans -v'
+            sh 'docker logout'
         }
     }
 }
