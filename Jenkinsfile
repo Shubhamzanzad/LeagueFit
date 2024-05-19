@@ -36,36 +36,36 @@ pipeline {
         }
         
 
-        stage('Build Docker Images') {
-            steps {
-                dir('./dataset') {
-                    sh "docker build -t ${DATASET_IMAGE_NAME} ."
-                }
-                dir('./backend') {
-                    sh "docker build -t ${BACKEND_IMAGE_NAME} ."
-                }
-                dir('./frontend') {
-                    sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
-                }
-            }
-        }
+        // stage('Build Docker Images') {
+        //     steps {
+        //         dir('./dataset') {
+        //             sh "docker build -t ${DATASET_IMAGE_NAME} ."
+        //         }
+        //         dir('./backend') {
+        //             sh "docker build -t ${BACKEND_IMAGE_NAME} ."
+        //         }
+        //         dir('./frontend') {
+        //             sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
+        //         }
+        //     }
+        // }
        
-        stage('Push Docker Images') {
-            steps {
-                script{
-                    docker.withRegistry('', 'LeagueFit-DockerHub') {
-                    sh ''' 
-                        docker tag dataset zanzadshubham25/dataset:latest
-                        docker push zanzadshubham25/dataset
-                        docker tag backend zanzadshubham25/backend:latest
-                        docker push zanzadshubham25/backend
-                        docker tag frontend zanzadshubham25/frontend:latest
-                        docker push zanzadshubham25/frontend
-                    '''
-                    }
-                }
-            }
-        }
+        // stage('Push Docker Images') {
+        //     steps {
+        //         script{
+        //             docker.withRegistry('', 'LeagueFit-DockerHub') {
+        //             sh ''' 
+        //                 docker tag dataset zanzadshubham25/dataset:latest
+        //                 docker push zanzadshubham25/dataset
+        //                 docker tag backend zanzadshubham25/backend:latest
+        //                 docker push zanzadshubham25/backend
+        //                 docker tag frontend zanzadshubham25/frontend:latest
+        //                 docker push zanzadshubham25/frontend
+        //             '''
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage("Deleted Docker Imgaes") {
         //     steps {
