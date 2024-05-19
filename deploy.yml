@@ -48,4 +48,4 @@
     - name: Run Docker Compose
       shell: docker-compose up -d
       args:
-        chdir: /var/lib/jenkins/workspace/LeagueFit
+        chdir: /home/shubham/Desktop/SPE_FINAL/LeagueFit
