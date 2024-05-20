@@ -1,0 +1,9 @@
+2024-05-20 12:08:33,551 - INFO - backend.py - posting attributes
+2024-05-20 12:08:33,588 - INFO - server.py - Sending dataframe
+2024-05-20 12:08:33,628 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-20 12:08:33,657 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-20 12:08:33,816 - INFO - backend.py - recommending teams
+2024-05-20 12:08:36,657 - INFO - backend.py - getting attributes
+2024-05-20 12:08:36,672 - INFO - server.py - Sending dataframe
+2024-05-20 12:08:36,800 - INFO - backend.py - posting to store to dataframe
+2024-05-20 12:08:36,880 - INFO - server.py - adding player to dataframe

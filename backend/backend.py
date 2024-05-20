@@ -51,13 +51,14 @@ app = FastAPI()
 def _recommend(data:NumberList):
     logging.info("posting attributes")
     if not data.numbers:
+        logging.error("Empty list")
         raise HTTPException(status_code=400, detail="The list of numbers is empty.")
     
     response = requests.get("http://dataset:8008/getDf")
     response.raise_for_status()
-    df = pd.read_csv(StringIO(response.text))
     
-    # Convert NumberList object to dictionary before sending in the request
+    df = pd.read_csv(StringIO(response.text))
+
     pivot_table, avg_wage = train(df)
     teams = recommend(df,data.numbers,5,pivot_table,avg_wage)
     logging.info("recommending teams")
@@ -67,8 +68,8 @@ def _recommend(data:NumberList):
 def _addPlayer(attributes:Attributes):
     logging.info(f"getting attributes")
     if not attributes:
-        raise HTTPException(status_code=400, detail="Attributes is empty.")
         logging.error("Empty attribute")
+        raise HTTPException(status_code=400, detail="Attributes is empty.")
     response = requests.get("http://dataset:8008/getDf")
     response.raise_for_status()
     df = pd.read_csv(StringIO(response.text))

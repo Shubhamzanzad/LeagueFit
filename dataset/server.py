@@ -16,6 +16,7 @@ app = FastAPI()
 def _getDf():
     path = "./data.csv"
     if not os.path.exists(path):
+        logging.error("File not found")
         raise HTTPException(status_code=404, detail="File not found")
     logging.info("Sending dataframe")
     with open(path, 'r') as file:
@@ -30,6 +31,7 @@ def _addPlayer(file: UploadFile = File(...)):
         with open(file_location, "wb+") as file_object:
             file_object.write(file.file.read())
     except Exception as e:
+        logging.log("Failed to save file")
         raise HTTPException(status_code=500, detail=f"Failed to save file: {e}")
 
 @app.get("/check")
