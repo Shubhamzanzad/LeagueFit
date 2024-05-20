@@ -5,13 +5,16 @@ import uvicorn
 import logging
 import os
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(filename)s - %(message)s")
-
+log_dir = "/app/logs"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(filename=os.path.join(log_dir, 'app.log'),
+                    level=logging.INFO,
+                    format="%(asctime)s - %(levelname)s - %(filename)s - %(message)s")
 app = FastAPI()
 
 @app.get("/getDf")
 def _getDf():
-    path = "./final_data.csv"
+    path = "./data.csv"
     if not os.path.exists(path):
         raise HTTPException(status_code=404, detail="File not found")
     logging.info("Sending dataframe")
@@ -31,7 +34,7 @@ def _addPlayer(file: UploadFile = File(...)):
 
 @app.get("/check")
 def _test():
-    df = pd.read_csv("./final_data.csv")
+    df = pd.read_csv("./data.csv")
     return df.iloc[-1]
 
 if __name__ == "__main__":
