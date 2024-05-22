@@ -37,6 +37,7 @@ def _addPlayer(file: UploadFile = File(...)):
 @app.get("/check")
 def _test():
     df = pd.read_csv("./data.csv")
+    logging.info("Checking the accepted row in dataframe")
     return df.iloc[-1]
 
 if __name__ == "__main__":

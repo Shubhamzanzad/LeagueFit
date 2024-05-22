@@ -61,11 +61,13 @@ def _recommend(data:NumberList):
 
     pivot_table, avg_wage = train(df)
     teams = recommend(df,data.numbers,5,pivot_table,avg_wage)
+    k=1
     for index, row in teams.iterrows():
         club_name = row['club_name']
         wage_eur = row['wage_eur']
-        logging.info(f"Recommending Teams:{club_name}-{wage_eur}")
-
+        logging.info(f"Recommended Team {k} - club name: {club_name} - average wage: {wage_eur}")
+        k+=1 
+    
     return teams.to_dict(orient='records')
 
 @app.post("/addPlayer")
@@ -81,11 +83,13 @@ def _addPlayer(attributes:Attributes):
     new_row = pd.DataFrame([attributes.dict()])
     new_row['league_name'] = df[df['club_name']==new_row['club_name'][0]]['league_name'].iloc[0]
     df = pd.concat([df,new_row],ignore_index=True)
+
+    logging.info(f"accepted recommendation - club name: {new_row['club_name'][0]}, average wage: {new_row['wage_eur'][0]}")
     
     csv_buffer = StringIO()
     df.to_csv(csv_buffer, index=False)
     csv_buffer.seek(0)
-    # Make change in logs say which team is accepted also if possible also add average wage to logs
+    
     logging.info("posting to store to dataframe")
     
     response = requests.post(

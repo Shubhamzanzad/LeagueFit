@@ -6,17 +6,27 @@ import requests
 import logging
 import os
 
-log_dir = "/app/logs"
-os.makedirs(log_dir, exist_ok=True)
-logging.basicConfig(filename=os.path.join(log_dir, 'app.log'),
+def setup_logger():
+    if os.getenv('RUNNING_IN_DOCKER'):
+        log_dir = "/app/logs"
+        os.makedirs(log_dir, exist_ok=True)
+        logging.basicConfig(filename=os.path.join(log_dir, 'app.log'),
                     level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(filename)s - %(message)s")
+        logger = logging.getLogger(__name__)
+        return logger
+    else:
+        logger = logging.getLogger(__name__)
+        logger.addHandler(logging.NullHandler())  # Disable logging
+        return logger
+
+logger = setup_logger()
 
 def recommend(df: pd.DataFrame ,vec: list[int], k: int, pivot_table: pd.DataFrame, avg_wage: pd.DataFrame) -> pd.DataFrame:
     """
     Takes a vector(attribute vector), avg_wage, pivot_table, and k (number of recommendations) and recommends k teams 
     """
-    logging.info("Taking pivot table, avg_wage dataframes and player attributes and recommending k teams")
+    logger.info("Taking pivot table, avg_wage dataframes and player attributes and recommending k teams")
     np_vec = np.array(vec).reshape(1, -1)
     cs = cosine_similarity(np_vec, pivot_table.to_numpy())
     pd_cs = pd.DataFrame(cs.T,index=pivot_table.index,columns=['cosine_similarity'])
