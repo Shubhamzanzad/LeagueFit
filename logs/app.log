@@ -38,98 +38,114 @@
 2024-05-22 07:14:13,318 - INFO - backend.py - Recommending Teams:VfL Bochum 1848-16909.090909090908
 2024-05-22 07:14:13,319 - INFO - backend.py - Recommending Teams:Montpellier Hérault SC-20454.545454545456
 2024-05-22 07:14:13,321 - INFO - backend.py - Recommending Teams:Arsenal-82272.72727272728
-2024-05-22 07:14:19,146 - INFO - backend.py - getting attributes
-2024-05-22 07:14:19,154 - INFO - server.py - Sending dataframe
-2024-05-22 07:14:19,211 - INFO - backend.py - accepted recommendation - club name: Everton, average wage: 83545.45454545454
-2024-05-22 07:14:19,254 - INFO - backend.py - posting to store to dataframe
-2024-05-22 07:14:19,339 - INFO - server.py - adding player to dataframe
-2024-05-22 07:14:39,522 - INFO - server.py - Checking the accepted row in dataframe
-2024-05-22 07:40:01,512 - INFO - backend.py - posting attributes
-2024-05-22 07:40:01,584 - INFO - server.py - Sending dataframe
-2024-05-22 07:40:01,619 - INFO - train.py - creating pivot table and converting to numpy
-2024-05-22 07:40:01,643 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
-2024-05-22 07:40:01,734 - INFO - backend.py - Recommending Teams:VfL Bochum 1848-16909.090909090908
-2024-05-22 07:40:01,736 - INFO - backend.py - Recommending Teams:Everton-83545.45454545454
-2024-05-22 07:40:01,738 - INFO - backend.py - Recommending Teams:1. FSV Mainz 05-19090.909090909092
-2024-05-22 07:40:01,740 - INFO - backend.py - Recommending Teams:SpVgg Greuther Fürth-17727.272727272728
-2024-05-22 07:40:01,741 - INFO - backend.py - Recommending Teams:Leeds United-66000.0
-2024-05-22 07:40:07,675 - INFO - backend.py - getting attributes
-2024-05-22 07:40:07,684 - INFO - server.py - Sending dataframe
-2024-05-22 07:40:07,721 - INFO - backend.py - accepted recommendation - club name: VfL Bochum 1848, average wage: 16909.090909090908
-2024-05-22 07:40:08,222 - INFO - backend.py - posting to store to dataframe
-2024-05-22 07:40:08,280 - INFO - server.py - adding player to dataframe
-2024-05-22 07:46:41,691 - INFO - backend.py - posting attributes
-2024-05-22 07:46:41,813 - INFO - server.py - Sending dataframe
-2024-05-22 07:46:41,844 - INFO - train.py - creating pivot table and converting to numpy
-2024-05-22 07:46:41,866 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
-2024-05-22 07:46:42,037 - INFO - backend.py - Recommending Teams:FC Augsburg-20909.090909090908
-2024-05-22 07:46:42,038 - INFO - backend.py - Recommending Teams:FC Nantes-19636.36363636364
-2024-05-22 07:46:42,039 - INFO - backend.py - Recommending Teams:Crystal Palace-46818.181818181816
-2024-05-22 07:46:42,040 - INFO - backend.py - Recommending Teams:ESTAC Troyes-12727.272727272728
-2024-05-22 07:46:42,041 - INFO - backend.py - Recommending Teams:SpVgg Greuther Fürth-17727.272727272728
-2024-05-22 07:46:47,970 - INFO - backend.py - getting attributes
-2024-05-22 07:46:47,978 - INFO - server.py - Sending dataframe
-2024-05-22 07:46:48,017 - INFO - backend.py - accepted recommendation - club name: FC Augsburg, average wage: 20909.090909090908
-2024-05-22 07:46:48,081 - INFO - backend.py - posting to store to dataframe
-2024-05-22 07:46:48,167 - INFO - server.py - adding player to dataframe
-2024-05-22 07:46:56,936 - INFO - server.py - Checking the accepted row in dataframe
-2024-05-22 07:49:24,955 - INFO - backend.py - posting attributes
-2024-05-22 07:49:25,037 - INFO - server.py - Sending dataframe
-2024-05-22 07:49:25,073 - INFO - train.py - creating pivot table and converting to numpy
-2024-05-22 07:49:25,097 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
-2024-05-22 07:49:25,248 - INFO - backend.py - Recommending Teams - club name: ESTAC Troyes - average wage: 12727.272727272728
-2024-05-22 07:49:25,249 - INFO - backend.py - Recommending Teams - club name: FC Nantes - average wage: 19636.36363636364
-2024-05-22 07:49:25,250 - INFO - backend.py - Recommending Teams - club name: FC Augsburg - average wage: 20909.090909090908
-2024-05-22 07:49:25,250 - INFO - backend.py - Recommending Teams - club name: Crystal Palace - average wage: 46818.181818181816
-2024-05-22 07:49:25,251 - INFO - backend.py - Recommending Teams - club name: SpVgg Greuther Fürth - average wage: 17727.272727272728
-2024-05-22 07:49:29,029 - INFO - backend.py - getting attributes
-2024-05-22 07:49:29,037 - INFO - server.py - Sending dataframe
-2024-05-22 07:49:29,073 - INFO - backend.py - accepted recommendation - club name: FC Nantes, average wage: 19636.36363636364
-2024-05-22 07:49:29,118 - INFO - backend.py - posting to store to dataframe
-2024-05-22 07:49:29,192 - INFO - server.py - adding player to dataframe
-2024-05-22 07:49:33,059 - INFO - server.py - Checking the accepted row in dataframe
-2024-05-22 07:50:57,382 - INFO - backend.py - posting attributes
-2024-05-22 07:50:57,411 - INFO - server.py - Sending dataframe
-2024-05-22 07:50:57,450 - INFO - train.py - creating pivot table and converting to numpy
-2024-05-22 07:50:57,478 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
-2024-05-22 07:50:57,599 - INFO - backend.py - Recommended Team 1 - club name: ESTAC Troyes - average wage: 12727.272727272728
-2024-05-22 07:50:57,600 - INFO - backend.py - Recommended Team 2 - club name: FC Nantes - average wage: 19636.36363636364
-2024-05-22 07:50:57,602 - INFO - backend.py - Recommended Team 3 - club name: Crystal Palace - average wage: 46818.181818181816
-2024-05-22 07:50:57,604 - INFO - backend.py - Recommended Team 4 - club name: FC Augsburg - average wage: 20909.090909090908
-2024-05-22 07:50:57,606 - INFO - backend.py - Recommended Team 11 - club name: SpVgg Greuther Fürth - average wage: 17727.272727272728
-2024-05-22 07:51:01,832 - INFO - backend.py - getting attributes
-2024-05-22 07:51:01,841 - INFO - server.py - Sending dataframe
-2024-05-22 07:51:01,884 - INFO - backend.py - accepted recommendation - club name: ESTAC Troyes, average wage: 12727.272727272728
-2024-05-22 07:51:01,931 - INFO - backend.py - posting to store to dataframe
-2024-05-22 07:51:01,984 - INFO - server.py - adding player to dataframe
-2024-05-22 07:51:07,599 - INFO - server.py - Checking the accepted row in dataframe
-2024-05-22 07:53:14,633 - INFO - backend.py - posting attributes
-2024-05-22 07:53:14,670 - INFO - server.py - Sending dataframe
-2024-05-22 07:53:14,705 - INFO - train.py - creating pivot table and converting to numpy
-2024-05-22 07:53:14,732 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
-2024-05-22 07:53:14,857 - INFO - backend.py - Recommended Team 0 - club name: FC Augsburg - average wage: 20909.090909090908
-2024-05-22 07:53:14,859 - INFO - backend.py - Recommended Team 1 - club name: ESTAC Troyes - average wage: 12727.272727272728
-2024-05-22 07:53:14,861 - INFO - backend.py - Recommended Team 3 - club name: FC Nantes - average wage: 19636.36363636364
-2024-05-22 07:53:14,863 - INFO - backend.py - Recommended Team 5 - club name: Crystal Palace - average wage: 46818.181818181816
-2024-05-22 07:53:14,864 - INFO - backend.py - Recommended Team 11 - club name: SpVgg Greuther Fürth - average wage: 17727.272727272728
-2024-05-22 07:53:18,443 - INFO - backend.py - getting attributes
-2024-05-22 07:53:18,455 - INFO - server.py - Sending dataframe
-2024-05-22 07:53:18,512 - INFO - backend.py - accepted recommendation - club name: Crystal Palace, average wage: 46818.181818181816
-2024-05-22 07:53:18,591 - INFO - backend.py - posting to store to dataframe
-2024-05-22 07:53:18,697 - INFO - server.py - adding player to dataframe
-2024-05-22 07:53:25,859 - INFO - server.py - Checking the accepted row in dataframe
-2024-05-22 07:55:22,156 - INFO - backend.py - posting attributes
-2024-05-22 07:55:22,191 - INFO - server.py - Sending dataframe
-2024-05-22 07:55:22,226 - INFO - train.py - creating pivot table and converting to numpy
-2024-05-22 07:55:22,260 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
-2024-05-22 07:55:22,415 - INFO - backend.py - Recommended Team 1 - club name: ESTAC Troyes - average wage: 12727.272727272728
-2024-05-22 07:55:22,416 - INFO - backend.py - Recommended Team 2 - club name: FC Nantes - average wage: 19636.36363636364
-2024-05-22 07:55:22,417 - INFO - backend.py - Recommended Team 3 - club name: FC Augsburg - average wage: 20909.090909090908
-2024-05-22 07:55:22,418 - INFO - backend.py - Recommended Team 4 - club name: Crystal Palace - average wage: 46818.181818181816
-2024-05-22 07:55:22,418 - INFO - backend.py - Recommended Team 5 - club name: SpVgg Greuther Fürth - average wage: 17727.272727272728
-2024-05-22 07:55:27,253 - INFO - backend.py - getting attributes
-2024-05-22 07:55:27,262 - INFO - server.py - Sending dataframe
-2024-05-22 07:55:27,312 - INFO - backend.py - accepted recommendation - club name: SpVgg Greuther Fürth, average wage: 17727.272727272728
-2024-05-22 07:55:27,406 - INFO - backend.py - posting to store to dataframe
-2024-05-22 07:55:27,473 - INFO - server.py - adding player to dataframe
-2024-05-22 07:55:33,035 - INFO - server.py - Checking the accepted row in dataframe
+2024-05-24 08:10:52,499 - INFO - backend.py - posting attributes
+2024-05-24 08:10:52,519 - INFO - server.py - Sending dataframe
+2024-05-24 08:10:52,540 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-24 08:10:52,555 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-24 08:10:52,603 - INFO - backend.py - Recommended Team 1 - club name: Olympique Lyonnais - average wage: 61181.818181818184
+2024-05-24 08:10:52,606 - INFO - backend.py - Recommended Team 2 - club name: Liverpool - average wage: 189545.45454545456
+2024-05-24 08:10:52,614 - INFO - backend.py - Recommended Team 3 - club name: Southampton - average wage: 41727.27272727273
+2024-05-24 08:10:52,614 - INFO - backend.py - Recommended Team 4 - club name: Aston Villa - average wage: 56545.454545454544
+2024-05-24 08:10:52,615 - INFO - backend.py - Recommended Team 5 - club name: Manchester United - average wage: 161454.54545454544
+2024-05-24 08:10:58,607 - INFO - backend.py - getting attributes
+2024-05-24 08:10:58,614 - INFO - server.py - Sending dataframe
+2024-05-24 08:10:58,635 - INFO - backend.py - accepted recommendation - club name: Southampton - average wage: 41727.27272727273
+2024-05-24 08:10:58,657 - INFO - backend.py - posting to store to dataframe
+2024-05-24 08:10:58,690 - INFO - server.py - adding player to dataframe
+2024-05-24 08:12:04,720 - INFO - backend.py - posting attributes
+2024-05-24 08:12:04,726 - INFO - server.py - Sending dataframe
+2024-05-24 08:12:04,744 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-24 08:12:04,762 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-24 08:12:04,800 - INFO - backend.py - Recommended Team 1 - club name: Clermont Foot 63 - average wage: 13000.0
+2024-05-24 08:12:04,804 - INFO - backend.py - Recommended Team 2 - club name: Montpellier Hérault SC - average wage: 20454.545454545456
+2024-05-24 08:12:04,807 - INFO - backend.py - Recommended Team 3 - club name: Leeds United - average wage: 66000.0
+2024-05-24 08:12:04,810 - INFO - backend.py - Recommended Team 4 - club name: VfL Bochum 1848 - average wage: 16909.090909090908
+2024-05-24 08:12:04,812 - INFO - backend.py - Recommended Team 5 - club name: ESTAC Troyes - average wage: 12727.272727272728
+2024-05-24 08:12:09,468 - INFO - backend.py - getting attributes
+2024-05-24 08:12:09,474 - INFO - server.py - Sending dataframe
+2024-05-24 08:12:09,493 - INFO - backend.py - accepted recommendation - club name: VfL Bochum 1848 - average wage: 16909.090909090908
+2024-05-24 08:12:09,513 - INFO - backend.py - posting to store to dataframe
+2024-05-24 08:12:09,545 - INFO - server.py - adding player to dataframe
+2024-05-24 08:12:15,619 - INFO - backend.py - posting attributes
+2024-05-24 08:12:15,625 - INFO - server.py - Sending dataframe
+2024-05-24 08:12:15,638 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-24 08:12:15,652 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-24 08:12:15,685 - INFO - backend.py - Recommended Team 1 - club name: VfL Bochum 1848 - average wage: 16909.090909090908
+2024-05-24 08:12:15,691 - INFO - backend.py - Recommended Team 2 - club name: Clermont Foot 63 - average wage: 13000.0
+2024-05-24 08:12:15,694 - INFO - backend.py - Recommended Team 3 - club name: Watford - average wage: 36818.181818181816
+2024-05-24 08:12:15,695 - INFO - backend.py - Recommended Team 4 - club name: Stade de Reims - average wage: 19000.0
+2024-05-24 08:12:15,696 - INFO - backend.py - Recommended Team 5 - club name: RC Strasbourg Alsace - average wage: 18909.090909090908
+2024-05-24 08:12:19,570 - INFO - backend.py - getting attributes
+2024-05-24 08:12:19,576 - INFO - server.py - Sending dataframe
+2024-05-24 08:12:19,596 - INFO - backend.py - accepted recommendation - club name: RC Strasbourg Alsace - average wage: 18909.090909090908
+2024-05-24 08:12:19,615 - INFO - backend.py - posting to store to dataframe
+2024-05-24 08:12:19,643 - INFO - server.py - adding player to dataframe
+2024-05-24 08:14:01,606 - INFO - backend.py - posting attributes
+2024-05-24 08:14:01,615 - INFO - server.py - Sending dataframe
+2024-05-24 08:14:01,629 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-24 08:14:01,643 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-24 08:14:01,691 - INFO - backend.py - Recommended Team 1 - club name: VfB Stuttgart - average wage: 22090.90909090909
+2024-05-24 08:14:01,693 - INFO - backend.py - Recommended Team 2 - club name: Angers SCO - average wage: 15909.09090909091
+2024-05-24 08:14:01,706 - INFO - backend.py - Recommended Team 3 - club name: Aston Villa - average wage: 56545.454545454544
+2024-05-24 08:14:01,707 - INFO - backend.py - Recommended Team 4 - club name: Norwich City - average wage: 30727.272727272728
+2024-05-24 08:14:01,709 - INFO - backend.py - Recommended Team 5 - club name: DSC Arminia Bielefeld - average wage: 16272.727272727272
+2024-05-24 08:14:05,063 - INFO - backend.py - getting attributes
+2024-05-24 08:14:05,070 - INFO - server.py - Sending dataframe
+2024-05-24 08:14:05,089 - INFO - backend.py - accepted recommendation - club name: Norwich City - average wage: 30727.272727272728
+2024-05-24 08:14:05,108 - INFO - backend.py - posting to store to dataframe
+2024-05-24 08:14:05,134 - INFO - server.py - adding player to dataframe
+2024-05-24 10:21:44,706 - INFO - backend.py - posting attributes
+2024-05-24 10:21:44,732 - INFO - server.py - Sending dataframe
+2024-05-24 10:21:44,755 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-24 10:21:44,780 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-24 10:21:44,884 - INFO - backend.py - Recommended Team 1 - club name: Eintracht Frankfurt - average wage: 28818.18181818182
+2024-05-24 10:21:44,886 - INFO - backend.py - Recommended Team 2 - club name: RB Leipzig - average wage: 73363.63636363637
+2024-05-24 10:21:44,887 - INFO - backend.py - Recommended Team 3 - club name: Olympique Lyonnais - average wage: 61181.818181818184
+2024-05-24 10:21:44,889 - INFO - backend.py - Recommended Team 4 - club name: Stade Rennais FC - average wage: 37090.90909090909
+2024-05-24 10:21:44,891 - INFO - backend.py - Recommended Team 5 - club name: FC Nantes - average wage: 19636.36363636364
+2024-05-24 10:21:47,485 - INFO - backend.py - getting attributes
+2024-05-24 10:21:47,492 - INFO - server.py - Sending dataframe
+2024-05-24 10:21:47,516 - INFO - backend.py - accepted recommendation - club name: FC Nantes - average wage: 19636.36363636364
+2024-05-24 10:21:47,539 - INFO - backend.py - posting to store to dataframe
+2024-05-24 10:21:47,582 - INFO - server.py - adding player to dataframe
+2024-05-24 10:22:33,098 - INFO - backend.py - posting attributes
+2024-05-24 10:22:33,105 - INFO - server.py - Sending dataframe
+2024-05-24 10:22:33,119 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-24 10:22:33,138 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-24 10:22:33,192 - INFO - backend.py - Recommended Team 1 - club name: FC Nantes - average wage: 19636.36363636364
+2024-05-24 10:22:33,193 - INFO - backend.py - Recommended Team 2 - club name: Crystal Palace - average wage: 46818.181818181816
+2024-05-24 10:22:33,196 - INFO - backend.py - Recommended Team 3 - club name: FC Augsburg - average wage: 20909.090909090908
+2024-05-24 10:22:33,199 - INFO - backend.py - Recommended Team 4 - club name: ESTAC Troyes - average wage: 12727.272727272728
+2024-05-24 10:22:33,204 - INFO - backend.py - Recommended Team 5 - club name: SpVgg Greuther Fürth - average wage: 17727.272727272728
+2024-05-24 10:22:41,189 - INFO - backend.py - getting attributes
+2024-05-24 10:22:41,195 - INFO - server.py - Sending dataframe
+2024-05-24 10:22:41,215 - INFO - backend.py - accepted recommendation - club name: Crystal Palace - average wage: 46818.181818181816
+2024-05-24 10:22:41,236 - INFO - backend.py - posting to store to dataframe
+2024-05-24 10:22:41,263 - INFO - server.py - adding player to dataframe
+2024-05-24 10:23:46,725 - INFO - backend.py - posting attributes
+2024-05-24 10:23:46,731 - INFO - server.py - Sending dataframe
+2024-05-24 10:23:46,745 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-24 10:23:46,761 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-24 10:23:46,810 - INFO - backend.py - Recommended Team 1 - club name: FC Nantes - average wage: 19636.36363636364
+2024-05-24 10:23:46,819 - INFO - backend.py - Recommended Team 2 - club name: Everton - average wage: 83545.45454545454
+2024-05-24 10:23:46,831 - INFO - backend.py - Recommended Team 3 - club name: VfL Wolfsburg - average wage: 62727.27272727273
+2024-05-24 10:23:46,851 - INFO - backend.py - Recommended Team 4 - club name: Crystal Palace - average wage: 46818.181818181816
+2024-05-24 10:23:46,852 - INFO - backend.py - Recommended Team 5 - club name: Paris Saint-Germain - average wage: 157090.9090909091
+2024-05-24 10:23:50,902 - INFO - backend.py - getting attributes
+2024-05-24 10:23:50,908 - INFO - server.py - Sending dataframe
+2024-05-24 10:23:50,927 - INFO - backend.py - accepted recommendation - club name: Everton - average wage: 83545.45454545454
+2024-05-24 10:23:50,946 - INFO - backend.py - posting to store to dataframe
+2024-05-24 10:23:50,976 - INFO - server.py - adding player to dataframe
+2024-05-24 11:00:26,308 - ERROR - backend.py - Empty List
+2024-05-24 11:00:26,331 - INFO - server.py - Sending dataframe
+2024-05-24 11:00:26,348 - INFO - train.py - creating pivot table and converting to numpy
+2024-05-24 11:00:26,363 - INFO - recommend.py - Taking pivot table, avg_wage dataframes and player attributes and recommending k teams
+2024-05-24 11:00:26,405 - INFO - backend.py - Recommended Team 1 - club name: FC Augsburg - average wage: 20909.090909090908
+2024-05-24 11:00:26,407 - INFO - backend.py - Recommended Team 2 - club name: FC Nantes - average wage: 19636.36363636364
+2024-05-24 11:00:26,422 - INFO - backend.py - Recommended Team 3 - club name: Crystal Palace - average wage: 46818.181818181816
+2024-05-24 11:00:26,435 - INFO - backend.py - Recommended Team 4 - club name: ESTAC Troyes - average wage: 12727.272727272728
+2024-05-24 11:00:26,437 - INFO - backend.py - Recommended Team 5 - club name: SpVgg Greuther Fürth - average wage: 17727.272727272728
+2024-05-24 11:00:32,279 - ERROR - backend.py - Empty List
+2024-05-24 11:00:34,978 - ERROR - backend.py - empty attribute
+2024-05-24 11:00:46,588 - ERROR - backend.py - Empty List
+2024-05-24 11:00:48,340 - ERROR - backend.py - empty attribute

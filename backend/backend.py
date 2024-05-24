@@ -84,7 +84,7 @@ def _addPlayer(attributes:Attributes):
     new_row['league_name'] = df[df['club_name']==new_row['club_name'][0]]['league_name'].iloc[0]
     df = pd.concat([df,new_row],ignore_index=True)
 
-    logging.info(f"accepted recommendation - club name: {new_row['club_name'][0]}, average wage: {new_row['wage_eur'][0]}")
+    logging.info(f"accepted recommendation - club name: {new_row['club_name'][0]} - average wage: {new_row['wage_eur'][0]}")
     
     csv_buffer = StringIO()
     df.to_csv(csv_buffer, index=False)
