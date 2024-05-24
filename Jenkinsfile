@@ -4,6 +4,7 @@ pipeline {
         DATASET_IMAGE_NAME = 'dataset'
         BACKEND_IMAGE_NAME = 'backend'
         FRONTEND_IMAGE_NAME = 'frontend'
+        // GITHUB_REPO_URL = 'https://github.com/SIddharthVPillai/LeagueFit.git'
         GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
         ANSIBLE_SUDO_PASS = credentials('ansible-sudo-password') 
         PATH = ""
