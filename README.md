@@ -31,6 +31,6 @@ To run **LeagueFit** locally, follow these steps:
    
    ![image](https://github.com/SiddharthVPillai/LeagueFit/assets/68557526/4ddb17dc-a44f-4da6-8fa3-435ee4c6d2b8)
 
-  In order to test whether the recommendation is added to the dataframe, goto `localhost:8008/docs` on your web browser and run the `/check` end point.
+   In order to test whether the recommendation is added to the dataframe, goto `localhost:8008/docs` on your web browser and run the `/check` end point.
 
-  ![image](https://github.com/SiddharthVPillai/LeagueFit/assets/68557526/5d939247-61c2-4018-9bca-f0153a7b8e0e)
+   ![image](https://github.com/SiddharthVPillai/LeagueFit/assets/68557526/5d939247-61c2-4018-9bca-f0153a7b8e0e)
