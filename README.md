@@ -3,7 +3,7 @@
 ## Introduction
 LeagueFit is a web application that helps users find the top 5 most similar clubs from English Premier League, French League 1 and German 1. Bundesliga based on player attributes. 
 This application uses cosine similarity to find the club names of 5 most similar players.
-In this project, we used DevOps practices like pipeline creation, containerization and orchestration, monitoring etc.
+In this project, we used DevOps practices like pipeline creation, containerization and orchestration, monitoring etc..
 
 ## Technologies Used
 - **Frontend** - Python (Streamlit)
