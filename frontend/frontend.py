@@ -1,10 +1,12 @@
 import streamlit as st
 import requests
 import random
+import os
+BACKEND_URL = os.environ.get("BACKEND_URL", "http://backend:8000")
 
 def handle_click(attribute, recommend):
     try:
-        response = requests.post("http://backend:8000/addPlayer", json={
+        response = requests.post(f"{BACKEND_URL}/addPlayer", json={
             "overall": attribute[10],
             "potential": attribute[14],
             "wage_eur": recommend['wage_eur'],
@@ -69,7 +71,7 @@ def main():
     
     if st.button("Get Recommendations"):
         try:
-            response = requests.post("http://backend:8000/recommend", json={
+            response = requests.post(f"{BACKEND_URL}/recommend", json={
                 "numbers": attribute
             })
             recommendations = response.json()

@@ -1,10 +1,16 @@
 pipeline {
     agent any
+    parameters {
+        string(
+            name: 'GCP_VM_IP',
+            defaultValue: '',
+            description: 'External IP of the GCP VM'
+        )
+    }
     environment {
         DATASET_IMAGE_NAME = 'dataset'
         BACKEND_IMAGE_NAME = 'backend'
         FRONTEND_IMAGE_NAME = 'frontend'
-        // GITHUB_REPO_URL = 'https://github.com/SIddharthVPillai/LeagueFit.git'
         GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
         ANSIBLE_SUDO_PASS = credentials('ansible-sudo-password') 
         PATH = ""
@@ -65,9 +71,13 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 script {
-                    sh '''
+                    if (!params.GCP_VM_IP?.trim()) {
+                        error 'GCP_VM_IP parameter is required. Provide the VM external IP before running the pipeline.'
+                    }
+                    sh """
+                    printf '[leaguefit]\\n${params.GCP_VM_IP} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/google_compute_engine ansible_ssh_common_args=\\'-o StrictHostKeyChecking=no\\'\\n' > inventory
                     ansible-playbook deploy.yml -i inventory --become --become-user=root --extra-vars "ansible_become_pass=${ANSIBLE_SUDO_PASS}"
-                    '''
+                    """
                 }
             }
         }

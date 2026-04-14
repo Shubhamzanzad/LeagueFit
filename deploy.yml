@@ -1,51 +1,62 @@
-- name: Deploy LeagueFit
-  hosts: localhost
-  remote_user: shubham
+- name: Deploy LeagueFit to GCP VM
+  hosts: leaguefit
   become: true
-  become_method: sudo
-  become_user: root
+
   vars:
-    ansible_ssh_private_key_file: /home/shubham/.ssh/id_rsa
+    app_dir: /home/ubuntu/leaguefit
+    dockerhub_user: zanzadshubham25
 
   tasks:
-    - name: Pull Dataset Image
-      community.general.docker_image:
-        name: "zanzadshubham25/dataset"
-        source: pull
-        force_source: true
-      register: docker_pull_dataset
-
-    - name: Display Docker Pull Result for Dataset Image
-      debug:
-        var: docker_pull_dataset
-
-    - name: Pull Backend Image
-      community.general.docker_image:
-        name: "zanzadshubham25/backend"
-        source: pull
-        force_source: true
-      register: docker_pull_backend
-
-    - name: Display Docker Pull Result for Backend Image
-      debug:
-        var: docker_pull_backend
-      
-    - name: Pull Frontend Image
-      community.general.docker_image:
-        name: "zanzadshubham25/frontend"
-        source: pull
-        force_source: true
-      register: docker_pull_frontend
-
-    - name: Display Docker Pull Result for Frontend Image
-      debug:
-        var: docker_pull_frontend
-
-    - name: Start Docker Compose
+    - name: Ensure Docker service is running
       service:
         name: docker
         state: started
-    - name: Run Docker Compose
-      shell: docker-compose up -d
+        enabled: true
+
+    - name: Ensure deployment directory exists
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
+
+    - name: Ensure logs directory exists
+      file:
+        path: "{{ app_dir }}/logs"
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: "0755"
+
+    - name: Copy production docker-compose file
+      copy:
+        src: docker-compose.prod.yml
+        dest: "{{ app_dir }}/docker-compose.yml"
+        owner: ubuntu
+        group: ubuntu
+        mode: "0644"
+
+    - name: Pull latest dataset image
+      community.general.docker_image:
+        name: "{{ dockerhub_user }}/dataset:latest"
+        source: pull
+        force_source: true
+
+    - name: Pull latest backend image
+      community.general.docker_image:
+        name: "{{ dockerhub_user }}/backend:latest"
+        source: pull
+        force_source: true
+
+    - name: Pull latest frontend image
+      community.general.docker_image:
+        name: "{{ dockerhub_user }}/frontend:latest"
+        source: pull
+        force_source: true
+
+    - name: Restart all services with latest images
+      shell: docker compose up -d --remove-orphans
       args:
-        chdir: /home/shubham/Desktop/SPE_FINAL/LeagueFit
+        chdir: "{{ app_dir }}"
+      become_user: ubuntu

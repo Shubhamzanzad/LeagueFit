@@ -1,0 +1,47 @@
+services:
+  dataset:
+    image: zanzadshubham25/dataset:latest
+    container_name: dataset
+    restart: always
+    ports:
+      - "8008:8008"
+    volumes:
+      - dataset-data:/app 
+      - ./logs:/app/logs
+    networks:
+      - app-network
+
+  backend:
+    image: zanzadshubham25/backend:latest
+    container_name: backend
+    restart: always
+    environment:
+      - DATASET_URL=http://dataset:8008
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - app-network
+    depends_on:
+      - dataset
+
+  frontend:
+    image: zanzadshubham25/frontend:latest
+    container_name: frontend
+    restart: always
+    environment:
+      - BACKEND_URL=http://backend:8000
+    ports:
+      - "8501:8501"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dataset-data:
