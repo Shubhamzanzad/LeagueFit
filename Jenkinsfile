@@ -60,7 +60,7 @@ pipeline {
                         docker tag backend zanzadshubham25/backend:latest
                         docker push zanzadshubham25/backend
                         docker tag frontend zanzadshubham25/frontend:latest
-                        docker push zanzadshubham25/frontend
+                        docker push zanzadshubham25/frontend 
                     '''
                 }
             }
