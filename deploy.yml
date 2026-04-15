@@ -96,3 +96,40 @@
       args:
         chdir: "{{ app_dir }}"
       become_user: ubuntu
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Configure nginx reverse proxy for Streamlit
+      copy:
+        dest: /etc/nginx/sites-available/leaguefit
+        content: |
+          server {
+              listen 80;
+              location / {
+                  proxy_pass http://localhost:8501;
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade $http_upgrade;
+                  proxy_set_header Connection "upgrade";
+                  proxy_set_header Host $host;
+              }
+          }
+
+    - name: Enable leaguefit nginx site
+      file:
+        src: /etc/nginx/sites-available/leaguefit
+        dest: /etc/nginx/sites-enabled/leaguefit
+        state: link
+
+    - name: Remove default nginx site
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
+        enabled: true
