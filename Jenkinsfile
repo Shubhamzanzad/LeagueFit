@@ -12,7 +12,6 @@ pipeline {
         BACKEND_IMAGE_NAME = 'backend'
         FRONTEND_IMAGE_NAME = 'frontend'
         GITHUB_REPO_URL = 'https://github.com/Shubhamzanzad/LeagueFit.git'
-        ANSIBLE_SUDO_PASS = credentials('ansible-sudo-password') 
         PATH = ""
     }
     
@@ -76,7 +75,7 @@ pipeline {
                     }
                     sh """
                     printf '[leaguefit]\\n${params.GCP_VM_IP} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/google_compute_engine ansible_ssh_common_args=\\'-o StrictHostKeyChecking=no\\'\\n' > inventory
-                    ansible-playbook deploy.yml -i inventory --become --become-user=root --extra-vars "ansible_become_pass=${ANSIBLE_SUDO_PASS}"
+                    ansible-playbook deploy.yml -i inventory
                     """
                 }
             }
