@@ -60,7 +60,7 @@ pipeline {
                         docker tag backend zanzadshubham25/backend:latest
                         docker push zanzadshubham25/backend
                         docker tag frontend zanzadshubham25/frontend:latest
-                        docker push zanzadshubham25/frontend 
+                        docker push zanzadshubham25/frontend
                     '''
                 }
             }
@@ -72,9 +72,12 @@ pipeline {
                         error 'GCP_VM_IP parameter is required. Provide the VM external IP before running the pipeline.'
                     }
                     sh """
-                    printf '[leaguefit]\\n${params.GCP_VM_IP} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/google_compute_engine ansible_ssh_common_args=\\'-o StrictHostKeyChecking=no\\'\\n' > inventory
-                    ansible-playbook deploy.yml -i inventory
-                    """
+cat > inventory << 'INVENTORY'
+[leaguefit]
+${params.GCP_VM_IP} ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/google_compute_engine ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+INVENTORY
+ansible-playbook deploy.yml -i inventory
+"""
                 }
             }
         }
