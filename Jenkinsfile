@@ -52,9 +52,9 @@ pipeline {
         }
         stage('Push Docker Images') {
             steps {
-                script{
-                    docker.withRegistry('', 'LeagueFit-DockerHub') {
-                    sh ''' 
+                withCredentials([usernamePassword(credentialsId: 'docker-token', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                         docker tag dataset zanzadshubham25/dataset:latest
                         docker push zanzadshubham25/dataset
                         docker tag backend zanzadshubham25/backend:latest
@@ -62,7 +62,6 @@ pipeline {
                         docker tag frontend zanzadshubham25/frontend:latest
                         docker push zanzadshubham25/frontend
                     '''
-                    }
                 }
             }
         }
