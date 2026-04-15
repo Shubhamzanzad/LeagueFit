@@ -84,7 +84,9 @@ pipeline {
     }
     post {
         always {
-            sh 'docker logout'
+            node(null) {
+                sh 'docker logout'
+            }
         }
     }
 }
