@@ -40,13 +40,13 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 dir('./dataset') {
-                    sh "docker build -t ${DATASET_IMAGE_NAME} ."
+                    sh "docker build --platform linux/amd64 -t ${DATASET_IMAGE_NAME} ."
                 }
                 dir('./backend') {
-                    sh "docker build -t ${BACKEND_IMAGE_NAME} ."
+                    sh "docker build --platform linux/amd64 -t ${BACKEND_IMAGE_NAME} ."
                 }
                 dir('./frontend') {
-                    sh "docker build -t ${FRONTEND_IMAGE_NAME} ."
+                    sh "docker build --platform linux/amd64 -t ${FRONTEND_IMAGE_NAME} ."
                 }
             }
         }
