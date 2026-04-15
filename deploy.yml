@@ -7,10 +7,32 @@
     dockerhub_user: zanzadshubham25
 
   tasks:
+    - name: Install prerequisites
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+        state: present
+        update_cache: true
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker apt repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable"
+        state: present
+
     - name: Install Docker
       apt:
         name:
-          - docker.io
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
           - docker-compose-plugin
         state: present
         update_cache: true
