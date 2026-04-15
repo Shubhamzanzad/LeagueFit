@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 ENV RUNNING_IN_DOCKER=true
 WORKDIR /app/
 COPY ./requirements.txt .
